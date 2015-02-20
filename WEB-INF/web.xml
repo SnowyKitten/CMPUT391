@@ -23,4 +23,13 @@
         <url-pattern>/RecordPage</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>photo</servlet-name>
+        <servlet-class>photo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>photo</servlet-name>
+        <url-pattern>/photo</url-pattern>
+    </servlet-mapping>
+
 </web-app>
