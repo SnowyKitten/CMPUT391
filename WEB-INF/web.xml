@@ -14,14 +14,13 @@
         <url-pattern>/authenticate</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-	<servlet-name>Asn2Sample</servlet-name>
-	<servlet-class>Asn2Sample</servlet-class>
+     <servlet>
+        <servlet-name>RecordPage</servlet-name>
+        <servlet-class>RecordPage</servlet-class>
     </servlet>
     <servlet-mapping>
-	<servlet-name>Asn2Sample</servlet-name>
-	<url-pattern>/Asn2Sample</url-pattern>
+        <servlet-name>RecordPage</servlet-name>
+        <url-pattern>/RecordPage</url-pattern>
     </servlet-mapping>
-
 
 </web-app>
