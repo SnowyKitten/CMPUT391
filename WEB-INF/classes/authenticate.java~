@@ -49,7 +49,7 @@ public class authenticate extends HttpServlet {
                     print_out = "Accepted! " + actual_pass;
                 } else {
                     print_out = "Denied. ";
-                }
+                
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
