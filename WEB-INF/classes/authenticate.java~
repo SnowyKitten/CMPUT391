@@ -26,6 +26,7 @@ public class authenticate extends HttpServlet {
 
             String actual_pass = null;
             String print_out = null;
+            String user_type = null;
 
             try {
                 Class drvClass = Class.forName(m_driverName);
@@ -37,38 +38,28 @@ public class authenticate extends HttpServlet {
 		
             l_login = request.getParameter("login");
 	    l_password = request.getParameter("password");
-            queryString = "select password from users u where u.user_name = '" + l_login + "'";
+            queryString = "select password, class from users u where u.user_name = '" + l_login + "'";
             try {
                 m_con = DriverManager.getConnection(m_url, m_userName, m_password);
                 stmt = m_con.createStatement();
                 ResultSet rset = stmt.executeQuery(queryString);
                 while(rset.next()) {
                     actual_pass = rset.getString(1);
+                    user_type = rset.getString(2);
                 }
                 if (actual_pass.equals(l_password)) {
-                    print_out = "Accepted! " + actual_pass;
+                    response.sendRedirect("index.jsp?auth='a'");
+                    print_out = "Accepted!:" + actual_pass +"USER:"+ user_type; 
                 } else {
-                    print_out = "Denied. ";
-                
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
-			"Transitional//EN\">\n" +
-			"<HTML>\n" +
-			"<HEAD><TITLE>Temp Authentication Page</TITLE></HEAD>\n" +
-			"<BODY>\n" +
-			"<H1>" +
-			print_out + 
-			"</H1>\n" +
-			"</BODY></HTML>");
+                    response.sendRedirect("login.html");
+                }
+
+                stmt.close();
+                m_con.close();
             } catch(Exception e) {
                 System.err.print("I'm adopted. ");
                 System.err.println(e.getMessage());
             }
-
-
-
-
 	}
 
 }

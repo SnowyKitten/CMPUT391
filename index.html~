@@ -4,6 +4,10 @@
         <title>Index File</title>
     </head>
     <body>
+	<% 
+        String auth = request.getParameter("auth");
+        
+        %>
         <a href="recordpage.html">Record Page<br></a>
         <a href="analysis.html">Analysis<br></a>
         <a href="search.html">Search<br></a>
