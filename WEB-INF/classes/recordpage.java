@@ -70,7 +70,7 @@ System.out.println(td);
 			String address= rs.getString("address");
 			String phone= rs.getString("phone");
 
-			answer=answer+first_name+last_name+address+phone+"<br>";
+			answer=answer+"<tr> <td>"+first_name+"</td> <td>"+last_name+"</td> <td>"+address+"</td> <td>"+phone+"</td> </tr>";
 			}
 		
 
@@ -98,8 +98,14 @@ System.out.println(td);
 			"hello" + 
 			"</H1>\n" +
 			"</BODY></HTML>");*/
-
-		out.println(answer);
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
+			"Transitional//EN\">\n" +
+			"<HTML>\n" +
+			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
+			"<BODY>\n" +
+			"<table border=\"1\" style=\"width:100%\">\n"+
+			"<tr> <td> <b> First Name </b> </td> <td> <b> Last Name </b> </td> <td> <b> Address </b> </td> <td> <b> Phone </b> </td> </tr>\n");
+		out.println(answer+"</table>");
 		out.println("</H1>\n"+"</BODY></HTML>");
 
 		
