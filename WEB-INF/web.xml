@@ -41,4 +41,22 @@
         <url-pattern>/adduser</url-pattern>
     </servlet-mapping>
 
+  <servlet>
+        <servlet-name>addperson</servlet-name>
+        <servlet-class>addperson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addperson</servlet-name>
+        <url-pattern>/addperson</url-pattern>
+    </servlet-mapping>
+
+  <servlet>
+        <servlet-name>adddoctor</servlet-name>
+        <servlet-class>adddoctor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adddoctor</servlet-name>
+        <url-pattern>/adddoctor</url-pattern>
+    </servlet-mapping>
+
 </web-app>

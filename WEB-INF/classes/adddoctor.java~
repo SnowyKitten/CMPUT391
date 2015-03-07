@@ -18,11 +18,8 @@ public class adduser extends HttpServlet {
 		String insertString1;
 		Statement stmt;
 		//get input		
-		String username = request.getParameter("username");
-		String userpassword = request.getParameter("userpassword");
-		String userclass = request.getParameter("userclass");
-		String personid = request.getParameter("personid");
-		String registrationdate = request.getParameter("registrationdate");
+		String doctorid = request.getParameter("doctorid");
+		String patientid = request.getParameter("patientid");
 
 		try
 		{
@@ -35,7 +32,7 @@ public class adduser extends HttpServlet {
 		}
 
 
-		queryString= "insert into users values('" + username + "', '" + userpassword + "', '"+ userclass + "', '"+ personid +"', " + "TO_DATE("+"'"+registrationdate+"', 'YYYY-MM-DD'))";
+		queryString= "insert into family_doctor values('" + doctorid + "', '" + patientid + "')";
 
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
@@ -70,7 +67,7 @@ public class adduser extends HttpServlet {
 			"<HTML>\n" +
 			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
 			"<BODY>\n" +
-			"ERROR <br>" + ex.getMessage() + "\n");
+			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
 }

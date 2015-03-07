@@ -4,7 +4,7 @@ import javax.servlet.http.*;
 import java.util.*;
 import java.sql.*;
 
-public class adduser extends HttpServlet {
+public class addperson extends HttpServlet {
 	public String response_message;
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
@@ -18,11 +18,12 @@ public class adduser extends HttpServlet {
 		String insertString1;
 		Statement stmt;
 		//get input		
-		String username = request.getParameter("username");
-		String userpassword = request.getParameter("userpassword");
-		String userclass = request.getParameter("userclass");
 		String personid = request.getParameter("personid");
-		String registrationdate = request.getParameter("registrationdate");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String address = request.getParameter("address");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
 
 		try
 		{
@@ -35,7 +36,7 @@ public class adduser extends HttpServlet {
 		}
 
 
-		queryString= "insert into users values('" + username + "', '" + userpassword + "', '"+ userclass + "', '"+ personid +"', " + "TO_DATE("+"'"+registrationdate+"', 'YYYY-MM-DD'))";
+		queryString= "insert into persons values('" + personid + "', '" + firstname + "', '"+ lastname + "', '"+ address +"', '" + email + "', '" + phone + "')";
 
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
@@ -70,21 +71,8 @@ public class adduser extends HttpServlet {
 			"<HTML>\n" +
 			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
 			"<BODY>\n" +
-			"ERROR <br>" + ex.getMessage() + "\n");
+			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
