@@ -4,7 +4,7 @@ import javax.servlet.http.*;
 import java.util.*;
 import java.sql.*;
 
-public class adduser extends HttpServlet {
+public class updateusersubmit extends HttpServlet {
 	public String response_message;
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class adduser extends HttpServlet {
 		}
 
 
-		queryString= "insert into users values('" + username + "', '" + userpassword + "', '"+ userclass + "', '"+ personid +"', " + "TO_DATE("+"'"+registrationdate+"', 'YYYY-MM-DD'))";
+		queryString= "update users set user_name='"+username+"', password='"+userpassword+"', class= '"+userclass+"', date_registered=TO_DATE('"+registrationdate+"', 'YYYY-MM-DD')" +"where person_id='"+personid+"'";
 
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
@@ -48,7 +48,7 @@ public class adduser extends HttpServlet {
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
 			"Transitional//EN\">\n" +
 			"<HTML>\n" +
-			"<HEAD><TITLE>adduser</TITLE></HEAD>\n" +
+			"<HEAD><TITLE>adddoctor</TITLE></HEAD>\n" +
 			"<BODY>\n" +
 			"SUCCESS\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
@@ -75,16 +75,3 @@ public class adduser extends HttpServlet {
 	}
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

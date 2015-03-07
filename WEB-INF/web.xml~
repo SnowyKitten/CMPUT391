@@ -50,4 +50,23 @@
         <url-pattern>/addperson</url-pattern>
     </servlet-mapping>
 
+  <servlet>
+        <servlet-name>adddoctor</servlet-name>
+        <servlet-class>adddoctor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adddoctor</servlet-name>
+        <url-pattern>/adddoctor</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>updateuser</servlet-name>
+        <servlet-class>updateuser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateuser</servlet-name>
+        <url-pattern>/updateuser</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

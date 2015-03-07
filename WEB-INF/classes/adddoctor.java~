@@ -4,7 +4,7 @@ import javax.servlet.http.*;
 import java.util.*;
 import java.sql.*;
 
-public class adduser extends HttpServlet {
+public class adddoctor extends HttpServlet {
 	public String response_message;
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {

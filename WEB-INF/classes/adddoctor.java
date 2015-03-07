@@ -45,7 +45,7 @@ public class adddoctor extends HttpServlet {
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
 			"Transitional//EN\">\n" +
 			"<HTML>\n" +
-			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
+			"<HEAD><TITLE>adddoctor</TITLE></HEAD>\n" +
 			"<BODY>\n" +
 			"SUCCESS\n");
 		out.println("</H1>\n"+"</BODY></HTML>");

@@ -70,7 +70,7 @@ public class adduser extends HttpServlet {
 			"<HTML>\n" +
 			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
 			"<BODY>\n" +
-			"ERROR <br>" + ex.getMessage() + "\n");
+			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
 }
