@@ -7,5 +7,7 @@
         <a href="adduser.html">Add User<br></a>
         <a href="addperson.html">Add Person<br></a>
         <a href="adddoctor.html">Add Doctor<br></a>
+        <a href="upload.html">Upload<br></a>
+        <a href="usermanage.html">User Management<br></a>
     </body>
 </html>        

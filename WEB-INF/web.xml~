@@ -32,13 +32,4 @@
         <url-pattern>/upload</url-pattern>
     </servlet-mapping>
 
-     <servlet>
-        <servlet-name>adduser</servlet-name>
-        <servlet-class>adduser</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>adduser</servlet-name>
-        <url-pattern>/adduser</url-pattern>
-    </servlet-mapping>
-
 </web-app>
