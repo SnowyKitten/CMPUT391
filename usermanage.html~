@@ -8,6 +8,12 @@
         <a href="addperson.html">Add Person<br></a>
         <a href="adddoctor.html">Add Doctor<br></a>
 	
-        <a href="search.html">Update Person<br></a>
+	<form id="updateuser" method="post" action="updateuser">   
+	<a href="javascript:{}" onclick="document.getElementById('updateuser').submit(); return false;">Update User</a>
+	</form>
+
+	<form id="updateperson" method="post" action="updateperson">   
+	<a href="javascript:{}" onclick="document.getElementById('updateperson').submit(); return false;">Update Person</a>
+	</form>
     </body>
 </html>        

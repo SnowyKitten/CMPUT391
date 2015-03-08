@@ -68,5 +68,32 @@
         <url-pattern>/updateuser</url-pattern>
     </servlet-mapping>
 
+<servlet>
+        <servlet-name>updateusersubmit</servlet-name>
+        <servlet-class>updateusersubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateusersubmit</servlet-name>
+        <url-pattern>/updateusersubmit</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>updateperson</servlet-name>
+        <servlet-class>updateperson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateperson</servlet-name>
+        <url-pattern>/updateperson</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>updatepersonsubmit</servlet-name>
+        <servlet-class>updatepersonsubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updatepersonsubmit</servlet-name>
+        <url-pattern>/updatepersonsubmit</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
