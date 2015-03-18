@@ -4,42 +4,25 @@ import javax.servlet.http.*;
 import java.util.*;
 import java.sql.*;
 
-
-
-
-public class recordpage extends HttpServlet {
+public class updatedoctor extends HttpServlet {
+	public String response_message;
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		
-		String dia = request.getParameter("diagnosis");
-		String fd= request.getParameter("from_date");
-		String td= request.getParameter("to_date");
-
-
-System.out.println(dia);
-System.out.println(fd);
-System.out.println(td);
-		
-		String answer="";
-
-
+		//database
+		String m_url = "jdbc:oracle:thin:@gwynne.cs.ualberta.ca:1521:CRS";
+		String m_driverName = "oracle.jdbc.driver.OracleDriver";
 		String user="rtwong";
 		String pass="rtwong1234";
-
-		
-		String m_url = "jdbc:oracle:thin:@gwynne.cs.ualberta.ca:1521:CRS";
-                String m_driverName = "oracle.jdbc.driver.OracleDriver";
-
 		Connection m_con;
+		String queryString;
+		String insertString1;
 		Statement stmt;
 		ResultSet rs;
+		String answer="";
 
-		String createString = "SELECT p1.first_name, p1.last_name, p1.address, p1.phone from persons p1 "+
-				      "WHERE p1.person_id in (SELECT r1.patient_id from radiology_record r1 "+
-				      "WHERE r1.diagnosis like '"+dia+"' "+
-				      "AND r1.prescribing_date BETWEEN TO_DATE('"+fd+"','YYYY-MM-DD') AND TO_DATE('"+td+"','YYYY-MM-DD'))"; 
- 			 
-		System.out.println(createString);
+		String createString = "SELECT doctor_id, patient_id from family_doctor"; 
+
+				System.out.println(createString);
 		try
        		{
 
@@ -65,12 +48,10 @@ System.out.println(td);
 
 			while (rs.next()){
 			System.out.println("X");
-			String first_name= rs.getString("first_name");
-			String last_name= rs.getString("last_name");
-			String address= rs.getString("address");
-			String phone= rs.getString("phone");
+			String doctorid= rs.getString("doctor_id");
+			String patientid= rs.getString("patient_id");
 
-			answer=answer+"<tr> <td>"+first_name+"</td> <td>"+last_name+"</td> <td>"+address+"</td> <td>"+phone+"</td> </tr>";
+			answer=answer+"<tr> <td>"+doctorid+"</td> <td>"+patientid+"</td> </tr>";
 			}
 		
 
@@ -88,27 +69,35 @@ System.out.println(td);
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-	
-		/*out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
-			"Transitional//EN\">\n" +
-			"<HTML>\n" +
-			"<HEAD><TITLE>Asn2Sample</TITLE></HEAD>\n" +
-			"<BODY>\n" +
-			"<H1>" +
-			"hello" + 
-			"</H1>\n" +
-			"</BODY></HTML>");*/
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
 			"Transitional//EN\">\n" +
 			"<HTML>\n" +
 			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
 			"<BODY>\n" +
 			"<table border=\"1\" style=\"width:100%\">\n"+
-			"<tr> <td> <b> First Name </b> </td> <td> <b> Last Name </b> </td> <td> <b> Address </b> </td> <td> <b> Phone </b> </td> </tr>\n");
+			"<tr> <td> <b> Doctor ID </b> </td> <td> <b> Patient ID </b> </td> </tr>\n");
 		out.println(answer+"</table>");
+		out.println("<form name=\"updatedoctorsubmit\" method=\"post\" action=\"updatedoctorsubmit\"><table><tr><th>Enter Doctor ID: </th><td><input name=\"doctorid\" type=\"text\" size=\"30\" value=\"\"></input></td></tr>");
+
+
+out.println("<tr><th>Enter Patient ID: </th><td><input name=\"patientid\" type=\"text\" size=\"30\" value=\"\"></input></td></tr>");
+
+out.println("<td ALIGN=CENTER COLSPAN=\"2\"><input type=\"submit\" name=\".submit\" value=\"Enter\"></td></tr></table></form>");  
 		out.println("</H1>\n"+"</BODY></HTML>");
 
 		
 
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

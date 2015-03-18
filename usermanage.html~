@@ -15,9 +15,5 @@
 	<form id="updateperson" method="post" action="updateperson">   
 	<a href="javascript:{}" onclick="document.getElementById('updateperson').submit(); return false;">Update Person</a>
 	</form>
-
-	<form id="updatedoctor" method="post" action="updatedoctor">   
-	<a href="javascript:{}" onclick="document.getElementById('updatedoctor').submit(); return false;">Update Doctor</a>
-	</form>
     </body>
 </html>        

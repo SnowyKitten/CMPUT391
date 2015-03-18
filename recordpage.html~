@@ -15,9 +15,9 @@
   <br>
   <tr>
     <th>Date:  FROM</th>
-    <td><input name="from_date" type="textfield" size="20" value="YYYY/MM/DD"></input></td>
+    <td><input name="from_date" type="textfield" size="20" value="DD/MM/YYYY"></input></td>
     <th>TO </th>
-    <td><input name="to_date" type="textfield" size="20" value="YYYY/MM/DD"></input></td>
+    <td><input name="to_date" type="textfield" size="20" value="DD/MM/YYYY"></input></td>
   </tr>
   <br>
   <tr>

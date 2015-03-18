@@ -104,7 +104,7 @@ System.out.println(td);
 			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
 			"<BODY>\n" +
 			"<table border=\"1\" style=\"width:100%\">\n"+
-			"<tr> <td> <b> First Name </b> </td> <td> <b> Last Name </b> </td> <td> <b> Address </b> </td> <td> <b> Phone </b> </td> </tr>\n");
+			"<tr> <td> First Name </td> <td>  Last Name </td> <td> Address </td> <td>  Phone </td> </tr>\n");
 		out.println(answer+"</table>");
 		out.println("</H1>\n"+"</BODY></HTML>");
 

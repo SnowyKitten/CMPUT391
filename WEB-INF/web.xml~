@@ -14,15 +14,6 @@
         <url-pattern>/authenticate</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>logout</servlet-name>
-        <servlet-class>logout</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>logout</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-
      <servlet>
         <servlet-name>recordpage</servlet-name>
         <servlet-class>recordpage</servlet-class>
@@ -102,24 +93,6 @@
     <servlet-mapping>
         <servlet-name>updatepersonsubmit</servlet-name>
         <url-pattern>/updatepersonsubmit</url-pattern>
-    </servlet-mapping>
-
-<servlet>
-        <servlet-name>updatedoctor</servlet-name>
-        <servlet-class>updatedoctor</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>updatedoctor</servlet-name>
-        <url-pattern>/updatedoctor</url-pattern>
-    </servlet-mapping>
-
-<servlet>
-        <servlet-name>updatedoctorsubmit</servlet-name>
-        <servlet-class>updatedoctorsubmit</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>updatedoctorsubmit</servlet-name>
-        <url-pattern>/updatedoctorsubmit</url-pattern>
     </servlet-mapping>
 
 
