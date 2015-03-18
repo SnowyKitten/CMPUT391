@@ -28,6 +28,8 @@ public class authenticate extends HttpServlet {
             String print_out = null;
             String user_type = null;
 
+
+
             try {
                 Class drvClass = Class.forName(m_driverName);
                 DriverManager.registerDriver((Driver) drvClass.newInstance());
@@ -48,8 +50,10 @@ public class authenticate extends HttpServlet {
                     user_type = rset.getString(2);
                 }
                 if (actual_pass.equals(l_password)) {
-                    response.sendRedirect("index.jsp?auth=a");
-                    print_out = "Accepted!:" + actual_pass +"USER:"+ user_type; 
+                    HttpSession session = request.getSession(true);
+                    Cookie cookie = new Cookie("type", user_type);
+                    response.addCookie(cookie);
+                    response.sendRedirect("index.jsp");
                 } else {
                     response.sendRedirect("login.html");
                 }
