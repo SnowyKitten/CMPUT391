@@ -4,6 +4,25 @@
 <title>heyheyhey upload phote and enter radiology record</title> 
 </head>
 <body> 
+
+        <%
+        //HttpSession session = request.getSession(true);
+        if (!request.isRequestedSessionIdValid()){
+            out.print("Appropriate authorization required."); 
+            return;
+        }
+        Cookie[] cookies = request.getCookies();
+        String auth = "null";
+        for (int i=0; i<cookies.length; i++) {
+            if(cookies[i].getName().equals("type")) {
+                auth = cookies[i].getValue();
+            }
+        }
+        %>
+
+	<% 
+        if(auth.equals("r")) {
+        %>
 Please Input radiology record!
 <form name="upload" method="post" action="upload">
 <table>
@@ -59,5 +78,15 @@ Please Input radiology record!
   </tr>
 </table>
 </form>
+
+        <%            
+        }
+        else {
+            out.print("Appropriate authorization required.");     
+        }
+        %>
+
+
+
 </body> 
 </html>

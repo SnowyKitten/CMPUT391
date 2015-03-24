@@ -61,8 +61,7 @@ public class authenticate extends HttpServlet {
                 stmt.close();
                 m_con.close();
             } catch(Exception e) {
-                System.err.print("I'm adopted. ");
-                System.err.println(e.getMessage());
+                response.sendRedirect("login.html");
             }
 	}
 

@@ -21,11 +21,10 @@
 	<% 
         if(auth.equals("a")) {
         %>
-        <a href="search.html">Search<br></a>
-        <a href="upload.html">Upload<br></a>
-        <a href="analysis.html">Analysis<br></a>
-        <a href="recordpage.html">Record Page<br></a>
-        <a href="usermanage.html">User Management<br></a>
+        <a href="search.jsp">Search<br></a>
+        <a href="analysis.jsp">Analysis<br></a>
+        <a href="recordpage.jsp">Report Generation<br></a>
+        <a href="usermanage.jsp">User Management<br></a>
         <form name="logout" method="POST" action= "logout">
         <input name= ".submit" type="submit" value="Logout"></td></tr>
         </form>
@@ -33,9 +32,8 @@
         } 
         else if(auth.equals("r")) {
         %>
-        <a href="search.html">Search<br></a>
-        <a href="upload.html">Upload<br></a>
-        <a href="analysis.html">Analysis<br></a>
+        <a href="search.jsp">Search<br></a>
+        <a href="upload.jsp">Upload<br></a>
         <form name="logout" method="POST" action= "logout">
         <input name= ".submit" type="submit" value="Logout"></td></tr>
         </form>
@@ -43,7 +41,7 @@
         }
         else if(auth.equals("d") || auth.equals("p")) {
         %>
-        <a href="search.html">Search<br></a>
+        <a href="search.jsp">Search<br></a>
         <form name="logout" method="POST" action= "logout">
         <input name= ".submit" type="submit" value="Logout"></td></tr>
         </form>
