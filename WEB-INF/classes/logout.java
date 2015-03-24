@@ -12,7 +12,7 @@ public class logout extends HttpServlet {
 
             Cookie cookie = new Cookie("type", "");
             response.addCookie(cookie);
-            response.sendRedirect("login.html");
+            response.sendRedirect("login.jsp");
 
 	}
 

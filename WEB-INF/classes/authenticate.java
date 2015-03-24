@@ -55,13 +55,13 @@ public class authenticate extends HttpServlet {
                     response.addCookie(cookie);
                     response.sendRedirect("index.jsp");
                 } else {
-                    response.sendRedirect("login.html");
+                    response.sendRedirect("login.jsp");
                 }
 
                 stmt.close();
                 m_con.close();
             } catch(Exception e) {
-                response.sendRedirect("login.html");
+                response.sendRedirect("login.jsp");
             }
 	}
 
