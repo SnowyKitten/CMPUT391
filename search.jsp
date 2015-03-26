@@ -2,7 +2,24 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
     <head>
+	<!-- http://jqueryui.com/datepicker/ -->
         <title>Search</title>
+	 <meta charset="utf-8">
+	<title>jQuery UI Datepicker - Default functionality</title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/	jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script>
+	$(function() {
+		$( "#datepicker" ).datepicker();
+		});
+		</script>
+	<script>
+	$(function() {
+		$( "#datepicker2" ).datepicker();
+		});
+		</script>
     </head>
     <body>
 
@@ -70,9 +87,9 @@
           </tr>
           <tr>
               <td>FROM:</td>
-              <td><input name="from_date" type="textfield" size="20" value="YYYY/MM/DD"></input></td>
+              <td><input name="from_date" type="text" id="datepicker"></td>
               <td>TO</td>
-              <td><input name="to_date" type="textfield" size="20" value="YYYY/MM/DD"></input></td>
+              <td><input name="to_date" type="text" id="datepicker2"></td>
            </tr>
        </table>
        <table>
@@ -87,6 +104,7 @@
        </table>
        <input type=submit value="Search" name="search">
     </form>
+
     <%
     try
     {

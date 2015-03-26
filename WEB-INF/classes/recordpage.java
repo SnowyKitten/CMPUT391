@@ -37,7 +37,7 @@ System.out.println(td);
 		String createString = "SELECT p1.first_name, p1.last_name, p1.address, p1.phone from persons p1 "+
 				      "WHERE p1.person_id in (SELECT r1.patient_id from radiology_record r1 "+
 				      "WHERE r1.diagnosis like '"+dia+"' "+
-				      "AND r1.prescribing_date BETWEEN TO_DATE('"+fd+"','YYYY-MM-DD') AND TO_DATE('"+td+"','YYYY-MM-DD'))"; 
+				      "AND r1.prescribing_date BETWEEN TO_DATE('"+fd+"','MM-DD-YYYY') AND TO_DATE('"+td+"','MM-DD-YYYY'))"; 
  			 
 		System.out.println(createString);
 		try
