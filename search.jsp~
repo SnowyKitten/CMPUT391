@@ -112,39 +112,22 @@
         if (request.getParameter("rank").equals("newest")) {
             if(!(request.getParameter("insertData") != null) {
                 // case 1: keyword search, no date
-                if(!(request.getParameter("query").equals("")) 
-                    && (request.getParameter("from_date").equals("")) 
-                    && (request.getParameter("to_date").equals(""))){}
-
+                if(!(request.getParameter("query").equals("")) && (request.getParameter("from_date").equals("")) && (request.getParameter("to_date").equals(""))){}
                 // case 2: date search, no keyword
-                else if((request.getParameter("query").equals("")) 
-                    && !(request.getParameter("from_date").equals("")) 
-                    && !(request.getParameter("to_date").equals(""))){}
-
+                else if((request.getParameter("query").equals("")) && !(request.getParameter("from_date").equals("")) && !(request.getParameter("to_date").equals(""))){}
                 // case 3: search by both parameters
-                else if(!(request.getParameter("query").equals("")) 
-                    && !(request.getParameter("from_date").equals("")) 
-                    && !(request.getParameter("to_date").equals(""))){}
+                else if(!(request.getParameter("query").equals("")) && !(request.getParameter("from_date").equals("")) && !(request.getParameter("to_date").equals(""))){}
             }
         }
-
         // sort by oldest to newest
         else if (request.getParameter("rank").equals("oldest")) {
             if(!(request.getParameter("insertData") != null) {
                 // case 1: keyword search, no date
-                if(!(request.getParameter("query").equals("")) 
-                    && (request.getParameter("from_date").equals("")) 
-                    && (request.getParameter("to_date").equals(""))){}
-
+                if(!(request.getParameter("query").equals("")) && (request.getParameter("from_date").equals("")) && (request.getParameter("to_date").equals(""))){}
                 // case 2: date search, no keyword
-                else if((request.getParameter("query").equals("")) 
-                    && !(request.getParameter("from_date").equals("")) 
-                    && !(request.getParameter("to_date").equals(""))){}
-
+                else if((request.getParameter("query").equals("")) && !(request.getParameter("from_date").equals("")) && !(request.getParameter("to_date").equals(""))){}
                 // case 3: search by both parameters
-                else if(!(request.getParameter("query").equals("")) 
-                    && !(request.getParameter("from_date").equals("")) 
-                    && !(request.getParameter("to_date").equals(""))){}
+                else if(!(request.getParameter("query").equals("")) && !(request.getParameter("from_date").equals("")) && !(request.getParameter("to_date").equals(""))){}
             }
         }
 
@@ -152,19 +135,11 @@
         else if (request.getParameter("rank").equals("rank")) {
             if(!(request.getParameter("insertData") != null) {
                 // case 1: keyword search, no date
-                if(!(request.getParameter("query").equals("")) 
-                    && (request.getParameter("from_date").equals("")) 
-                    && (request.getParameter("to_date").equals(""))){}
-
+                if(!(request.getParameter("query").equals("")) && (request.getParameter("from_date").equals("")) && (request.getParameter("to_date").equals(""))){}
                 // case 2: date search, no keyword
-                else if((request.getParameter("query").equals("")) 
-                    && !(request.getParameter("from_date").equals("")) 
-                    && !(request.getParameter("to_date").equals(""))){}
-
+                else if((request.getParameter("query").equals("")) && !(request.getParameter("from_date").equals("")) && !(request.getParameter("to_date").equals(""))){}
                 // case 3: search by both parameters
-                else if(!(request.getParameter("query").equals("")) 
-                    && !(request.getParameter("from_date").equals("")) 
-                    && !(request.getParameter("to_date").equals(""))){}
+                else if(!(request.getParameter("query").equals("")) && !(request.getParameter("from_date").equals("")) && !(request.getParameter("to_date").equals(""))){}
             }
         }
 
