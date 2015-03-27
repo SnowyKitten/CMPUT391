@@ -41,6 +41,18 @@
         <url-pattern>/upload</url-pattern>
     </servlet-mapping>
 
+<<<<<<< HEAD
+    <servlet>
+        <servlet-name>UploadImage</servlet-name>
+        <servlet-class>UploadImage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadImage</servlet-name>
+        <url-pattern>/UploadImage</url-pattern>
+    </servlet-mapping>
+
+=======
+>>>>>>> 776018850fcc5d92309170534335a3fb40aaf0bd
      <servlet>
         <servlet-name>adduser</servlet-name>
         <servlet-class>adduser</servlet-class>
