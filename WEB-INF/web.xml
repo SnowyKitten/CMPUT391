@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+ version="2.4">
+
+    <servlet>
+        <servlet-name>authenticate</servlet-name>
+        <servlet-class>authenticate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>authenticate</servlet-name>
+        <url-pattern>/authenticate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>logout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+     <servlet>
+        <servlet-name>recordpage</servlet-name>
+        <servlet-class>recordpage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>recordpage</servlet-name>
+        <url-pattern>/recordpage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>upload</servlet-name>
+        <servlet-class>upload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>upload</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UploadImage</servlet-name>
+        <servlet-class>UploadImage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadImage</servlet-name>
+        <url-pattern>/UploadImage</url-pattern>
+    </servlet-mapping>
+
+     <servlet>
+        <servlet-name>adduser</servlet-name>
+        <servlet-class>adduser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adduser</servlet-name>
+        <url-pattern>/adduser</url-pattern>
+    </servlet-mapping>
+
+  <servlet>
+        <servlet-name>addperson</servlet-name>
+        <servlet-class>addperson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addperson</servlet-name>
+        <url-pattern>/addperson</url-pattern>
+    </servlet-mapping>
+
+  <servlet>
+        <servlet-name>adddoctor</servlet-name>
+        <servlet-class>adddoctor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adddoctor</servlet-name>
+        <url-pattern>/adddoctor</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>updateuser</servlet-name>
+        <servlet-class>updateuser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateuser</servlet-name>
+        <url-pattern>/updateuser</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>updateusersubmit</servlet-name>
+        <servlet-class>updateusersubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateusersubmit</servlet-name>
+        <url-pattern>/updateusersubmit</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>updateperson</servlet-name>
+        <servlet-class>updateperson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateperson</servlet-name>
+        <url-pattern>/updateperson</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>updatepersonsubmit</servlet-name>
+        <servlet-class>updatepersonsubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updatepersonsubmit</servlet-name>
+        <url-pattern>/updatepersonsubmit</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>updatedoctor</servlet-name>
+        <servlet-class>updatedoctor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updatedoctor</servlet-name>
+        <url-pattern>/updatedoctor</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>updatedoctorsubmit</servlet-name>
+        <servlet-class>updatedoctorsubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updatedoctorsubmit</servlet-name>
+        <url-pattern>/updatedoctorsubmit</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
