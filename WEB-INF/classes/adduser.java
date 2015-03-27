@@ -35,7 +35,7 @@ public class adduser extends HttpServlet {
 		}
 
 
-		queryString= "insert into users values('" + username + "', '" + userpassword + "', '"+ userclass + "', '"+ personid +"', " + "TO_DATE("+"'"+registrationdate+"', 'YYYY-MM-DD'))";
+		queryString= "insert into users values('" + username + "', '" + userpassword + "', '"+ userclass + "', '"+ personid +"', " + "TO_DATE("+"'"+registrationdate+"', 'MM-DD-YYYY'))";
 
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);

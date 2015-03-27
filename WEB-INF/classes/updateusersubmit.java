@@ -35,7 +35,7 @@ public class updateusersubmit extends HttpServlet {
 		}
 
 
-		queryString= "update users set user_name='"+username+"', password='"+userpassword+"', class= '"+userclass+"', date_registered=TO_DATE('"+registrationdate+"', 'YYYY-MM-DD')" +"where person_id='"+personid+"'";
+		queryString= "update users set user_name='"+username+"', password='"+userpassword+"', class= '"+userclass+"', date_registered=TO_DATE('"+registrationdate+"', 'MM-DD-YYYY')" +"where person_id='"+personid+"'";
 
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);

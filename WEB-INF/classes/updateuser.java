@@ -74,7 +74,18 @@ public class updateuser extends HttpServlet {
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
 			"Transitional//EN\">\n" +
 			"<HTML>\n" +
-			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
+			"<HEAD><TITLE>RecordPage2</TITLE><title>Search</title>"+
+	 "<meta charset=\"utf-8\">\n"+
+	"<title>jQuery UI Datepicker - Default functionality</title>\n"+
+	"<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.11.4/themes/smoothness/	jquery-ui.css\">\n"+
+	"<script src=\"//code.jquery.com/jquery-1.10.2.js\"></script>\n"+
+	"<script src=\"//code.jquery.com/ui/1.11.4/jquery-ui.js\"></script>\n"+
+	"<link rel=\"stylesheet\" href=\"/resources/demos/style.css\">\n"+
+	"<script>\n"+
+	"$(function() {\n"+
+		"$( \"#datepicker\" ).datepicker();\n"+
+		"});\n"+
+		"</script></HEAD>\n" +
 			"<BODY>\n" +
 			"<table border=\"1\" style=\"width:100%\">\n"+
 			"<tr> <td> <b> Username </b> </td> <td> <b> Class </b> </td> <td> <b> Person ID </b> </td> <td> <b> Date Registered </b> </td> </tr>\n");
@@ -86,7 +97,7 @@ out.println("<tr><th>Enter Password: </th><td><input name=\"userpasssword\" type
 
 out.println("<tr><th>Enter Class: </th><td><input name=\"userclass\" type=\"text\" size=\"30\" value=\"\"></input></td></tr>");
 
-out.println("<tr><th>Enter Person ID: </th><td><input name=\"personid\" type=\"text\" size=\"30\" value=\"\"></input></td></tr><tr><tr><th>Enter Registration Date: </th><td><input name=\"registrationdate\" type=\"text\" size=\"30\" value=\"\"></input></td></tr>");
+out.println("<tr><th>Enter Person ID: </th><td><input name=\"personid\" type=\"text\" size=\"30\" value=\"\"></input></td></tr><tr><tr><th>Enter Registration Date: </th><td><input name=\"registrationdate\" type=\"text\" id=\"datepicker\"></td></tr>");
 
 out.println("<td ALIGN=CENTER COLSPAN=\"2\"><input type=\"submit\" name=\".submit\" value=\"Enter\"></td></tr></table></form>");  
 		out.println("</H1>\n"+"</BODY></HTML>");
