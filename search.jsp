@@ -95,10 +95,11 @@
        <table>
            <tr>
                 <br><br>
+                Record Ordering Style              
                 <td>
                 <input type="radio" name="rank" value="newest">Show Newest First<br>
                 <input type="radio" name="rank" value="oldest">Show Oldest First<br>
-                <input type="radio" name="rank" value="rank">Show by Ranking
+                <input type="radio" name="rank" value="ranking">Show by Ranking
                 </td>
             </tr>
        </table>
@@ -108,14 +109,89 @@
     <%
     try
     {
-        if (request.getParameter("rank").equals("newest")) {}
-        else if (request.getParameter("rank").equals("oldest")) {}
-        else if (request.getParameter("rank").equals("rank")) {}
-        else{}
+        // sort by newest to oldest
+
+
+        if (request.getParameter("rank").equals("newest")) {
+            // case 1: keyword search, no date
+            if(!(request.getParameter("query") == null) 
+                && (request.getParameter("from_date").equals("")) 
+                && (request.getParameter("to_date").equals(""))){
+                out.println("newest, keyword search, no date");
+            }
+
+            // case 2: date search, no keyword
+            else if((request.getParameter("query").equals("")) 
+                && !(request.getParameter("from_date").equals("")) 
+                && !(request.getParameter("to_date").equals(""))){
+                out.println("newest, date search, no keyword");
+            }
+
+            // case 3: search by both parameters
+            else if(!(request.getParameter("query").equals("")) 
+                && !(request.getParameter("from_date").equals("")) 
+                && !(request.getParameter("to_date").equals(""))){
+                out.println("newest, both parameters");
+            }
+            
+        }
+        // sort by oldest to newest
+        else if (request.getParameter("rank").equals("oldest")) {
+            // case 1: keyword search, no date
+            if(!(request.getParameter("query").equals("")) 
+                && (request.getParameter("from_date").equals("")) 
+                && (request.getParameter("to_date").equals(""))){
+                out.println("oldest, keyword search, no date");
+            }
+
+            // case 2: date search, no keyword
+            else if((request.getParameter("query").equals("")) 
+                && !(request.getParameter("from_date").equals("")) 
+                && !(request.getParameter("to_date").equals(""))){
+                out.println("oldest, date search, no keyword");
+            }
+
+            // case 3: search by both parameters
+            else if(!(request.getParameter("query").equals("")) 
+                && !(request.getParameter("from_date").equals("")) 
+                && !(request.getParameter("to_date").equals(""))){
+                out.println("oldest, both parameters");
+            }
+            
+        }
+        // sort by ranking parameter
+        else if (request.getParameter("rank").equals("ranking")) {
+            // case 1: keyword search, no date
+            if(!(request.getParameter("query").equals("")) 
+                && (request.getParameter("from_date").equals("")) 
+                && (request.getParameter("to_date").equals(""))){
+                out.println("ranking, keyword search, no date");
+            }
+
+            // case 2: date search, no keyword
+            else if((request.getParameter("query").equals("")) 
+                && !(request.getParameter("from_date").equals("")) 
+                && !(request.getParameter("to_date").equals(""))){
+                out.println("ranking, date search, no keyword");
+            }
+
+            // case 3: search by both parameters
+            else if(!(request.getParameter("query").equals("")) 
+                && !(request.getParameter("from_date").equals("")) 
+                && !(request.getParameter("to_date").equals(""))){
+                out.println("ranking, both parameters");
+            }
+            
+        }
+
+        // return with error, one must be checked
+        else{
+        out.println("I'm adopted.");
+        }
     }
     catch(Exception e)
     {
-        out.println("SQLException: " +
+        System.out.println("SQLException: " +
         e.getMessage());
 	m_con.rollback();
     }

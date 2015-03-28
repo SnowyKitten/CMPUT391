@@ -24,7 +24,7 @@
         if(auth.equals("r")) {
         %>
 Please Input radiology record!
-<form name="upload" method="post" action="upload">
+<!-- <form name="upload" method="post" action="upload">
 <table>
   <tr>
     <th>Enter Record ID: </th>
@@ -77,6 +77,22 @@ Please Input radiology record!
     <td ALIGN=CENTER COLSPAN="2"><input type="submit" name=".submit" value="Enter"></td>
   </tr>
 </table>
+<p>
+</form> -->
+<p>
+<hr>
+Please input or select the path of the image!
+<form name="upload-image" method="POST" enctype="multipart/form-data" action="UploadImage">
+<table>
+  <tr>
+    <th>File path: </th>
+    <td><input name="file-path" type="file" size="30" ></input></td>
+  </tr>
+  <tr>
+    <td ALIGN=CENTER COLSPAN="2"><input type="submit" name=".submit" 
+     value="Upload"></td>
+  </tr>
+</table>
 </form>
 
         <%            
@@ -85,8 +101,6 @@ Please Input radiology record!
             out.print("Appropriate authorization required.");     
         }
         %>
-
-
 
 </body> 
 </html>
