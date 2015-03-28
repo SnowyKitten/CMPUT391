@@ -11,9 +11,11 @@
             return;
         }
         String auth = (String) session.getAttribute("class");
+
+
         %>
 	<% 
-        if(auth.equals("a")) {
+        if(auth == "a") {
         %>
         <a href="search.jsp">Search<br></a>
         <a href="analysis.jsp">Analysis<br></a>
@@ -22,7 +24,7 @@
         <a href="logout.jsp"> Logout<br></a>
         <% 
         } 
-        else if(auth.equals("r")) {
+        else if(auth == "r") {
         %>
         <a href="search.jsp">Search<br></a>
         <a href="uploadrecord.jsp">Upload a Record<br></a>
@@ -30,7 +32,7 @@
         <a href="logout.jsp"> Logout<br></a>
         <%            
         }
-        else if(auth.equals("d") || auth.equals("p")) {
+        else if(auth == "d" || auth == "p") {
         %>
         <a href="search.jsp">Search<br></a>
         <a href="logout.jsp"> Logout<br></a>
