@@ -24,6 +24,49 @@ public class updatepersonsubmit extends HttpServlet {
 		String person_id = request.getParameter("person_id");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
+		
+
+		queryString= "update persons set ";
+		System.out.println("firstname            :"+firstname);
+		System.out.println("lastname             :"+lastname);
+		System.out.println("email                :"+email);
+		System.out.println("address              :"+address);
+		System.out.println("phone                :"+phone);
+		boolean flag=false;
+		queryString= "update persons set ";
+		if (firstname != ""){
+			queryString= queryString + "first_name='"+firstname+"'";
+			flag=true;
+		}
+		if (lastname != "") {
+				if (flag == true){
+					queryString= queryString +",";}
+			queryString= queryString + " last_name='"+lastname+"'";
+			flag=true;
+		}
+		if (email != "") {
+				if (flag == true){
+					queryString= queryString +",";}
+			queryString= queryString + " email='"+email+"'";
+			flag=true;
+		}
+		if (address != "") {
+				if (flag == true){
+					queryString= queryString +",";}
+			queryString= queryString + " address= '"+address+"'";
+			flag=true;
+		}
+		if (phone != "") {
+				if (flag == true){
+					queryString= queryString +",";}
+			queryString= queryString + "phone='"+phone+"'";
+			flag=true;
+		}
+		if (flag == true){
+			queryString= queryString+" where person_id='"+person_id+"'";
+			System.out.println(queryString);
+
+
 
 		try
 		{
@@ -36,7 +79,7 @@ public class updatepersonsubmit extends HttpServlet {
 		}
 
 
-		queryString= "update persons set first_name='"+firstname+"', last_name='"+lastname+"', address= '"+address+"', email='"+email+"', phone='"+phone+"' where person_id='"+person_id+"'";
+		
 
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
@@ -74,5 +117,6 @@ public class updatepersonsubmit extends HttpServlet {
 			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
+}
 }
 }
