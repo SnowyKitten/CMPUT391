@@ -10,13 +10,7 @@
             out.print("Appropriate authorization required. adopted"); 
             return;
         }
-        Cookie[] cookies = request.getCookies();
-        String auth = "null";
-        for (int i=0; i<cookies.length; i++) {
-            if(cookies[i].getName().equals("type")) {
-                auth = cookies[i].getValue();
-            }
-        }
+        String auth = (String) session.getAttribute("class");
         %>
 	<% 
         if(auth.equals("a")) {
@@ -33,7 +27,8 @@
         else if(auth.equals("r")) {
         %>
         <a href="search.jsp">Search<br></a>
-        <a href="upload.jsp">Upload<br></a>
+        <a href="uploadrecord.jsp">Upload a Record<br></a>
+        <a href="upload.jsp">Upload an Image<br></a>
         <form name="logout" method="POST" action= "logout">
         <input name= ".submit" type="submit" value="Logout"></td></tr>
         </form>

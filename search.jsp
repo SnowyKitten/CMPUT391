@@ -118,6 +118,15 @@
                 && (request.getParameter("from_date").equals("")) 
                 && (request.getParameter("to_date").equals(""))){
                 out.println("newest, keyword search, no date");
+                PreparedStatement doSearch = m_con.prepareStatement("SELECT unique(record_id),patient_id,doctor_id,radiologist_id,test_type,prescribing_date,test_date,diagnosis, description, score(1), score(2), score(3), score(4) FROM radiology_record r,persons p WHERE contains(diagnosis, ?, 1) > 0 OR contains(description, ?, 2) > 0 OR contains(first_name, ?, 3) > 0 OR contains(last_name, ?, 4) > 0 order by ((3 * score(1))+ (score(2)) +(6*(score(3)+score(4))) desc");
+              doSearch.setString(1, request.getParameter("query"));
+              doSearch.setString(2, request.getParameter("query"));
+              doSearch.setString(3, request.getParameter("query"));
+              doSearch.setString(4, request.getParameter("query"));
+              
+              ResultSet rset = doSearch.executeQuery();
+
+              out.println("i didnt crash");
             }
 
             // case 2: date search, no keyword

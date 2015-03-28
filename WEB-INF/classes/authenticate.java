@@ -27,6 +27,7 @@ public class authenticate extends HttpServlet {
             String actual_pass = null;
             String print_out = null;
             String user_type = null;
+            String p_id = null;
 
 
 
@@ -40,7 +41,7 @@ public class authenticate extends HttpServlet {
 		
             l_login = request.getParameter("login");
 	    l_password = request.getParameter("password");
-            queryString = "select password, class from users u where u.user_name = '" + l_login + "'";
+            queryString = "select password, class, person_id from users u where u.user_name = '" + l_login + "'";
             try {
                 m_con = DriverManager.getConnection(m_url, m_userName, m_password);
                 stmt = m_con.createStatement();
@@ -48,11 +49,12 @@ public class authenticate extends HttpServlet {
                 while(rset.next()) {
                     actual_pass = rset.getString(1);
                     user_type = rset.getString(2);
+                    p_id = rset.getString(3);
                 }
                 if (actual_pass.equals(l_password)) {
                     HttpSession session = request.getSession(true);
-                    Cookie cookie = new Cookie("type", user_type);
-                    response.addCookie(cookie);
+                    session.setAttribute("class", user_type);
+                    session.setAttribute("pid", p_id);
                     response.sendRedirect("index.jsp");
                 } else {
                     response.sendRedirect("login.jsp");
