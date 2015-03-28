@@ -6,6 +6,7 @@
         <%
             session.removeAttribute("class");
             session.removeAttribute("pid");
+            HttpSession.invalidate();
             response.setHeader("Refresh", "3;url=login.jsp");
         %>
     </body>

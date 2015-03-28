@@ -14,7 +14,7 @@
         %>
 
 	<% 
-        if(auth.equals("a")) {
+        if(auth == "a") {
         %>
 
         <font size="5" color="red">Add Doctor</font>

@@ -11,6 +11,7 @@
             return;
         }
         String auth = (String) session.getAttribute("class");
+        out.println(auth);
         
         if (auth == null) {
             auth = "null";
