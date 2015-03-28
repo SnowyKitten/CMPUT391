@@ -30,6 +30,7 @@
             return;
         }
         String auth = (String) session.getAttribute("class");
+        String pid = (String) session.getAttribute("pid");
         %>
 
 	<%
@@ -39,11 +40,8 @@
 	      String m_userName = "rtwong"; //supply username
 	      String m_password = "rtwong1234"; //supply password
 	      
-	      String addItemError = "";
 	      
 	      Connection m_con;
-	      String createString;
-	      String selectString = "select itemName, description from item";
 	      Statement stmt;
 	      
 	      try

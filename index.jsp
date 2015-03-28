@@ -19,9 +19,7 @@
         <a href="analysis.jsp">Analysis<br></a>
         <a href="recordpage.jsp">Report Generation<br></a>
         <a href="usermanage.jsp">User Management<br></a>
-        <form name="logout" method="POST" action= "logout">
-        <input name= ".submit" type="submit" value="Logout"></td></tr>
-        </form>
+        <a href="logout.jsp"> Logout<br></a>
         <% 
         } 
         else if(auth.equals("r")) {
@@ -29,17 +27,13 @@
         <a href="search.jsp">Search<br></a>
         <a href="uploadrecord.jsp">Upload a Record<br></a>
         <a href="upload.jsp">Upload an Image<br></a>
-        <form name="logout" method="POST" action= "logout">
-        <input name= ".submit" type="submit" value="Logout"></td></tr>
-        </form>
+        <a href="logout.jsp"> Logout<br></a>
         <%            
         }
         else if(auth.equals("d") || auth.equals("p")) {
         %>
         <a href="search.jsp">Search<br></a>
-        <form name="logout" method="POST" action= "logout">
-        <input name= ".submit" type="submit" value="Logout"></td></tr>
-        </form>
+        <a href="logout.jsp"> Logout<br></a>
         <%            
         }
         else {
