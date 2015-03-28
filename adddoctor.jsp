@@ -9,7 +9,7 @@
             out.print("Appropriate authorization required."); 
             return;
         }
-        String auth = session.getAttribute("class");
+        String auth = (String) session.getAttribute("class");
 
         if (auth == null) {
             auth = "null";
