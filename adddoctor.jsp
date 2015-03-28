@@ -10,7 +10,6 @@
             out.print("Appropriate authorization required."); 
             return;
         }
-        Cookie[] cookies = request.getCookies();
         String auth = session.getAttribute("class");
         %>
 
