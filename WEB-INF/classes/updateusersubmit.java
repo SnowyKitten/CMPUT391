@@ -17,7 +17,8 @@ public class updateusersubmit extends HttpServlet {
 		String queryString;
 		String insertString1;
 		Statement stmt;
-		//get input		
+		//get input
+		
 		String username = request.getParameter("username");
 		String userpassword = request.getParameter("userpassword");
 		String userclass = request.getParameter("userclass");
@@ -33,10 +34,38 @@ public class updateusersubmit extends HttpServlet {
 			System.err.print("ClassNotFoundException: ");
 			System.err.println(e.getMessage());
 		}
-
-
-		queryString= "update users set user_name='"+username+"', password='"+userpassword+"', class= '"+userclass+"', date_registered=TO_DATE('"+registrationdate+"', 'MM-DD-YYYY')" +"where person_id='"+personid+"'";
-
+		
+		System.out.println("username            :"+username);
+		System.out.println("userpass            :"+userpassword);
+		System.out.println("userclass           :"+userclass);
+		System.out.println("registrationdate    :"+registrationdate);
+		boolean flag=false;
+		queryString= "update users set ";
+		if (username != ""){
+			queryString= queryString + "user_name='"+username+"'";
+			flag=true;
+		}
+		if (userpassword != "") {
+				if (flag == true){
+					queryString= queryString +",";}
+			queryString= queryString + " password='"+userpassword+"'";
+			flag=true;
+		}
+		if (userclass != "") {
+				if (flag == true){
+					queryString= queryString +",";}
+			queryString= queryString + " class= '"+userclass+"'";
+			flag=true;
+		}
+		if (registrationdate != "") {
+				if (flag == true){
+					queryString= queryString +",";}
+			queryString= queryString + "date_registered=TO_DATE('"+registrationdate+"', 'MM-DD-YYYY')";
+			flag=true;
+		}
+		if (flag == true){
+			queryString= queryString+" where person_id='"+personid+"'";
+			System.out.println(queryString);
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
 		stmt = m_con.createStatement();
@@ -73,5 +102,17 @@ public class updateusersubmit extends HttpServlet {
 			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
+	}else {
+
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
+			"Transitional//EN\">\n" +
+			"<HTML>\n" +
+			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
+			"<BODY>\n" +
+			"ERROR <br> <br>PLEASE PUT IN VALUES TO UPDATE\n");
+		out.println("</H1>\n"+"</BODY></HTML>");
+		}
 }
 }
