@@ -6,14 +6,11 @@
     <body>
 
         <%
-
-        Cookie[] cookies = request.getCookies();
-        String auth = "null";
-        for (int i=0; i<cookies.length; i++) {
-            if(cookies[i].getName().equals("type")) {
-                auth = cookies[i].getValue();
-            }
+        String auth = (String) session.getAttribute("class");
+        if (auth == null) {
+            auth = "null";
         }
+
         if(auth.equals("a") || auth.equals("r") || auth.equals("d") || auth.equals("p")) {
             String redirectURL = "index.jsp";
             response.sendRedirect(redirectURL);

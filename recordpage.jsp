@@ -23,15 +23,14 @@
 </head>
 <body> 
         <%
-        //HttpSession session = request.getSession(true);
         if (!request.isRequestedSessionIdValid()){
             out.print("Appropriate authorization required."); 
             return;
         }
         String auth = (String) session.getAttribute("class");
-        %>
-
-	<% 
+        if (auth == null) {
+            auth = "null";
+        }
         if(auth.equals("a")) {
         %>
 

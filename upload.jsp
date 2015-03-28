@@ -12,9 +12,9 @@
             return;
         }
         String auth = (String) session.getAttribute("class");
-        %>
-
-	<% 
+        if (auth == null) {
+            auth = "null";
+        }
         if(auth.equals("r")) {
         %>
 Please Input radiology record!

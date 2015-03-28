@@ -11,9 +11,9 @@
             return;
         }
         String auth = (String) session.getAttribute("class");
-        if (auth == null) {
-            auth = "null";
-        } 
+        %>
+
+	<% 
         if(auth.equals("a")) {
         %>
         <a href="adduser.jsp">Add User<br></a>
