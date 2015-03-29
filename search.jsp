@@ -24,13 +24,12 @@
     <body>
 
         <%
-        //HttpSession session = request.getSession(true);
-        if (!request.isRequestedSessionIdValid()){
+        String check = (String) session.getAttribute("class");
+        if (!( check !="a" && check != "r" && check != "d" && check != "p")){
             out.print("Appropriate authorization required."); 
             return;
         }
         String auth = (String) session.getAttribute("class");
-        String pid = (String) session.getAttribute("pid");
         %>
 
 	<%
@@ -43,6 +42,7 @@
 	      
 	      Connection m_con;
 	      Statement stmt;
+              ResultSet rset;
 	      
 	      try
 	      {
@@ -97,107 +97,215 @@
        </table>
        <input type=submit value="Search" name="search">
     </form>
-
     <%
-    try
-    {
-        // sort by newest to oldest
 
-
-        if (request.getParameter("rank").equals("newest")) {
-            // case 1: keyword search, no date
-            if(!(request.getParameter("query") == null) 
-                && (request.getParameter("from_date").equals("")) 
-                && (request.getParameter("to_date").equals(""))){
-                out.println("newest, keyword search, no date");
-                PreparedStatement doSearch = m_con.prepareStatement("SELECT unique(record_id),patient_id,doctor_id,radiologist_id,test_type,prescribing_date,test_date,diagnosis, description, score(1), score(2), score(3), score(4) FROM radiology_record r,persons p WHERE contains(diagnosis, ?, 1) > 0 OR contains(description, ?, 2) > 0 OR contains(first_name, ?, 3) > 0 OR contains(last_name, ?, 4) > 0 order by ((3 * score(1))+ (score(2)) +(6*(score(3)+score(4))) desc");
-              doSearch.setString(1, request.getParameter("query"));
-              doSearch.setString(2, request.getParameter("query"));
-              doSearch.setString(3, request.getParameter("query"));
-              doSearch.setString(4, request.getParameter("query"));
-              
-              ResultSet rset = doSearch.executeQuery();
-
-              out.println("i didnt crash");
-            }
-
-            // case 2: date search, no keyword
-            else if((request.getParameter("query").equals("")) 
-                && !(request.getParameter("from_date").equals("")) 
-                && !(request.getParameter("to_date").equals(""))){
-                out.println("newest, date search, no keyword");
-            }
-
-            // case 3: search by both parameters
-            else if(!(request.getParameter("query").equals("")) 
-                && !(request.getParameter("from_date").equals("")) 
-                && !(request.getParameter("to_date").equals(""))){
-                out.println("newest, both parameters");
-            }
-            
+        String ranking = request.getParameter("rank");
+        String keyword = request.getParameter("query");
+        String from_date = request.getParameter("from_date");
+        String to_date = request.getParameter("to_date");
+        if (ranking == null) {
+            ranking = "null";
         }
-        // sort by oldest to newest
-        else if (request.getParameter("rank").equals("oldest")) {
-            // case 1: keyword search, no date
-            if(!(request.getParameter("query").equals("")) 
-                && (request.getParameter("from_date").equals("")) 
-                && (request.getParameter("to_date").equals(""))){
-                out.println("oldest, keyword search, no date");
-            }
-
-            // case 2: date search, no keyword
-            else if((request.getParameter("query").equals("")) 
-                && !(request.getParameter("from_date").equals("")) 
-                && !(request.getParameter("to_date").equals(""))){
-                out.println("oldest, date search, no keyword");
-            }
-
-            // case 3: search by both parameters
-            else if(!(request.getParameter("query").equals("")) 
-                && !(request.getParameter("from_date").equals("")) 
-                && !(request.getParameter("to_date").equals(""))){
-                out.println("oldest, both parameters");
-            }
-            
+        if (keyword == null) {
+            keyword = "null";
         }
-        // sort by ranking parameter
-        else if (request.getParameter("rank").equals("ranking")) {
-            // case 1: keyword search, no date
-            if(!(request.getParameter("query").equals("")) 
-                && (request.getParameter("from_date").equals("")) 
-                && (request.getParameter("to_date").equals(""))){
-                out.println("ranking, keyword search, no date");
-            }
-
-            // case 2: date search, no keyword
-            else if((request.getParameter("query").equals("")) 
-                && !(request.getParameter("from_date").equals("")) 
-                && !(request.getParameter("to_date").equals(""))){
-                out.println("ranking, date search, no keyword");
-            }
-
-            // case 3: search by both parameters
-            else if(!(request.getParameter("query").equals("")) 
-                && !(request.getParameter("from_date").equals("")) 
-                && !(request.getParameter("to_date").equals(""))){
-                out.println("ranking, both parameters");
-            }
-            
+        if (from_date == null) {
+            from_date = "null";
+        }
+        if (to_date == null) {
+            to_date = "null";
         }
 
-        // return with error, one must be checked
+
+        String SQLStatement = "";
+        String SQLOrdering = "";
+        String pid = (String) session.getAttribute("pid");
+        String security = "";
+
+        SQLStatement = "select r.* ";
+            
+
+        if (ranking.equals("newest")) {
+            SQLOrdering = "r.test_date desc";
+        }
+        else if (ranking.equals("oldest")) {
+            SQLOrdering = "r.test_date asc";
+        }
+        else if (ranking.equals("ranking")) {
+            SQLOrdering = "rank desc";
+        }
+
+        if (auth.equals("a")) {}
+        else if(auth.equals("r")) {
+            security = "r.radiologist_id = '" + pid + "' AND";
+        }
+        else if(auth.equals("d")) {
+            security = "r.doctor_id = '" + pid + "' AND";
+        }
+        else if(auth.equals("p")) {
+            security = "r.patient_id = '" + pid + "' AND ";
+        }
         else{
-        out.println("I'm adopted.");
+            out.println(pid);
         }
-    }
-    catch(Exception e)
-    {
-        System.out.println("SQLException: " +
-        e.getMessage());
-	m_con.rollback();
-    }
+
+
+        // case 1: keywords, no dates
+        if (!(keyword.equals("")) && from_date.equals("") && to_date.equals("")) {
+            String[] keywordList = keyword.split(" ");
+            SQLStatement = SQLStatement + ", ";
+            int counter = 0;
+            for (int i = 0; i < keywordList.length; i++) {
+                SQLStatement = SQLStatement + "6*score(" + Integer.toString(counter + 1)
+                                          + ")+6*score(" + Integer.toString(counter + 2)
+                                          + ")+3*score(" + Integer.toString(counter + 3)
+                                          + ")+score(" + Integer.toString(counter + 4)
+                                          + ") ";
+
+                if (i != keywordList.length - 1) {
+                    SQLStatement = SQLStatement + "+ ";
+                }
+                counter = counter + 4;
+            }
+
+            SQLStatement = SQLStatement + "as rank from radiology_record r full join persons p on r.patient_id = p.person_id where ";
+
+            counter = 0;
+            SQLStatement = SQLStatement + security;
+            for (int i = 0; i < keywordList.length; i++) {
+                SQLStatement = SQLStatement +"(contains(p.first_name, '" + keywordList[i]
+                                           + "', " + Integer.toString(counter + 1)
+                                           + ") > 0 OR "
+                                           + "contains(p.last_name, '" + keywordList[i]
+                                           + "', " + Integer.toString(counter + 2)
+                                           + ") > 0 OR "
+                                           + "contains(r.diagnosis, '" + keywordList[i]
+                                           + "', " + Integer.toString(counter + 3)
+                                           + ") > 0 OR "
+                                           + "contains(r.description, '" + keywordList[i]
+                                           + "', " + Integer.toString(counter + 4)
+                                           + ") > 0 )";
+                if (i != keywordList.length - 1) {
+                    SQLStatement = SQLStatement + "OR ";
+                }
+                counter = counter + 4;
+            }
+            SQLStatement = SQLStatement + "ORDER BY " + SQLOrdering;
+        }   
+        // case 2: dates, no keywords
+        else if (keyword.equals("") && !(from_date.equals("")) && !(to_date.equals(""))){
+            SQLStatement = SQLStatement + "from radiology_record r full join persons p on r.patient_id = p.person_id where " + security;
+
+            SQLStatement = SQLStatement + "r.test_date between to_date('" + from_date
+                                        + "', 'MM/DD/YYYY') and to_date('" + to_date
+                                        + "', 'MM/DD/YYYY') order by ";
+
+            if (ranking.equals("ranking")) {
+                out.println("Cannot order by ranking without keyword search" + "<br>");
+                out.println("Default of 'Show Newest First' is used." + "<br>");
+                SQLStatement = SQLStatement + "r.test_date desc";
+            }
+            else {
+                SQLStatement = SQLStatement + SQLOrdering;
+            }
+
+        }
+
+        // case 3: both parameters
+        else if (!keyword.equals("") && !(from_date.equals("")) && !(to_date.equals("")))
+        {
+            String[] keywordList = keyword.split(" ");
+            SQLStatement = SQLStatement + ", ";
+            int counter = 0;
+            for (int i = 0; i < keywordList.length; i++) {
+                SQLStatement = SQLStatement + "6*score(" + Integer.toString(counter + 1)
+                                          + ")+6*score(" + Integer.toString(counter + 2)
+                                          + ")+3*score(" + Integer.toString(counter + 3)
+                                          + ")+score(" + Integer.toString(counter + 4)
+                                          + ") ";
+
+                if (i != keywordList.length - 1) {
+                    SQLStatement = SQLStatement + "+ ";
+                }
+                counter = counter + 4;
+            }
+
+            SQLStatement = SQLStatement + "as rank from radiology_record r full join persons p on r.patient_id = p.person_id where ";
+
+            SQLStatement = SQLStatement + "r.test_date between to_date('" + from_date
+                                        + "', 'MM/DD/YYYY') and to_date('" + to_date
+                                        + "', 'MM/DD/YYYY') AND ";
+
+            counter = 0;
+            SQLStatement = SQLStatement + security;
+            for (int i = 0; i < keywordList.length; i++) {
+                SQLStatement = SQLStatement +"(contains(p.first_name, '" + keywordList[i]
+                                           + "', " + Integer.toString(counter + 1)
+                                           + ") > 0 OR "
+                                           + "contains(p.last_name, '" + keywordList[i]
+                                           + "', " + Integer.toString(counter + 2)
+                                           + ") > 0 OR "
+                                           + "contains(r.diagnosis, '" + keywordList[i]
+                                           + "', " + Integer.toString(counter + 3)
+                                           + ") > 0 OR "
+                                           + "contains(r.description, '" + keywordList[i]
+                                           + "', " + Integer.toString(counter + 4)
+                                           + ") > 0 )";
+                if (i != keywordList.length - 1) {
+                    SQLStatement = SQLStatement + "OR ";
+                }
+                counter = counter + 4;
+            }
+            SQLStatement = SQLStatement + "ORDER BY " + SQLOrdering;
+        }
+    %> 
+    <table border="2">
+        <tr>
+            <th>Record ID</th>
+            <th>Patient ID</th>
+            <th>Doctor ID</th>
+            <th>Radiologist ID</th>
+            <th>Test Type</th>
+            <th>Prescribing Date</th>
+            <th>Test Date</th>
+            <th>Diagnosis</th>
+            <th>Description</th>
+            <th>Images</th>        
+        </tr>
+    <%
+
+        try {
+            stmt = m_con.createStatement();
+            rset = stmt.executeQuery(SQLStatement);
+            while (rset != null && rset.next()) {
+                String recordID = (rset.getString("record_id"));
+                String patientID = (rset.getString("patient_id"));
+                String doctorID = (rset.getString("doctor_id"));
+                String radiologistID = (rset.getString("radiologist_id"));
+                String testType = (rset.getString("TEST_TYPE"));
+                String prescribeDate = (rset.getString("PRESCRIBING_DATE"));
+                String testDate = (rset.getString("TEST_DATE"));
+                String diagnosis = (rset.getString("DIAGNOSIS"));
+                String description = (rset.getString("description"));
+
+                out.println("<tr>");
+                out.println("<td>" + recordID + "</td>");
+                out.println("<td>" + patientID + "</td>");
+                out.println("<td>" + doctorID + "</td>");
+                out.println("<td>" + radiologistID + "</td>");
+                out.println("<td>" + testType + "</td>");
+                out.println("<td>" + prescribeDate + "</td>");
+                out.println("<td>" + testDate + "</td>");
+                out.println("<td>" + diagnosis + "</td>");
+                out.println("<td>" + description + "</td>");
+            }
+        } catch (Exception e){
+            out.println("help");
+        }    
+
+        
     %>
- 
+    </table>
 
     </body>
 </html>        

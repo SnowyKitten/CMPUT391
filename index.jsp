@@ -5,7 +5,7 @@
     </head>
     <body>
         <%
-        //HttpSession session = request.getSession(true);
+
         if (!request.isRequestedSessionIdValid()){
             out.print("Appropriate authorization required. adopted"); 
             return;
