@@ -47,7 +47,6 @@ public class updateuser extends HttpServlet {
               		rs = stmt.executeQuery(createString);
 
 			while (rs.next()){
-			System.out.println("X");
 			String user_name= rs.getString("user_name");
 			String class1= rs.getString("class");
 			String person_id= rs.getString("person_id");
@@ -93,7 +92,7 @@ public class updateuser extends HttpServlet {
 		out.println("<form name=\"updateusersubmit\" method=\"post\" action=\"updateusersubmit\"><table><tr><th>Enter Username: </th><td><input name=\"username\" type=\"text\" size=\"30\" value=\"\"></input></td></tr>");
 
 
-out.println("<tr><th>Enter Password: </th><td><input name=\"userpasssword\" type=\"text\" size=\"30\" value=\"\"></input></td></tr>");
+out.println("<tr><th>Enter Password: </th><td><input name=\"userpassword\" type=\"text\" size=\"30\" value=\"\"></input></td></tr>");
 
 out.println("<tr><th>Enter Class: </th><td><input name=\"userclass\" type=\"text\" size=\"30\" value=\"\"></input></td></tr>");
 
