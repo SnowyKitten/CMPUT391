@@ -64,26 +64,37 @@ public class UploadImage extends HttpServlet {
 	String password = "rtwong1234";
 	String drivername = "oracle.jdbc.driver.OracleDriver";
 	String dbstring ="jdbc:oracle:thin:@gwynne.cs.ualberta.ca:1521:CRS";
+
 	int pic_id;
+	FileItem image_file = null;
+
 
 	try {
 	    //Parse the HTTP request to get the image stream
 	    DiskFileUpload fu = new DiskFileUpload();
 	    List FileItems = fu.parseRequest(request);
-	    int recordID=5;
+	    int recordID=0;
 	    // Process the uploaded items, assuming only 1 image file uploaded
 	    Iterator i = FileItems.iterator();
-	    FileItem item = (FileItem) i.next();
-	    while (i.hasNext() && item.isFormField()) {
-		item = (FileItem) i.next();
+	    //FileItem item = (FileItem) i.next();
+	    while (i.hasNext()) {
+		FileItem item = (FileItem) i.next();
+		if(item.isFormField()){
+			if(item.getFieldName().equals("recordID")){
+				recordID=Integer.parseInt(item.getString());
+			}
+		}else{
+			image_file=item;
+
+	    	}
 	    }
 
 	    //Get the image stream
-	    InputStream instream = item.getInputStream();
+	    InputStream instream = image_file.getInputStream();
 
 	    BufferedImage img = ImageIO.read(instream);
 	    BufferedImage thumbNail = shrink(img, 10);
-	    BufferedImage fullimg = enlarge(img, 3);
+	    BufferedImage fullimg = shrink(img, 5);
 
             // Connect to the database and create a statement
             Connection conn = getConnected(drivername,dbstring, username,password);
@@ -182,18 +193,4 @@ public class UploadImage extends HttpServlet {
         return shrunkImage;
     }
 
-    public static BufferedImage enlarge(BufferedImage image, int n) {
-
-        int w = image.getWidth() * n;
-        int h = image.getHeight() * n;
-
-        BufferedImage enlargedImage =
-            new BufferedImage(w, h, image.getType());
-
-        for (int y=0; y < h; ++y)
-            for (int x=0; x < w; ++x)
-                enlargedImage.setRGB(x, y, image.getRGB(x/n, y/n));
-
-        return enlargedImage;
-    }
 }

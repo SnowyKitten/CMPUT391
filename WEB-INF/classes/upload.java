@@ -38,32 +38,31 @@ public class upload extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 		
-		queryString= "insert into radiology_record values('" + record_id + "', '" + patient_id + "', '"+ doctor_id + "', '"+ radiologist_id +"', '" +  test_type +"', " + "TO_DATE("+"'"+prescribing_date+"', 'YYYYMMDD')"+", TO_DATE("+"'"+test_date+"', 'YYYYMMDD')" +",'"+diagnosis+"', '"+description+"')";
+		queryString= "insert into radiology_record values('" + record_id + "', '" + patient_id + "', '"+ doctor_id + "', '"+ radiologist_id +"', '" +  test_type +"', " + "TO_DATE("+"'"+prescribing_date+"', 'MM-DD-YYYY')"+", TO_DATE("+"'"+test_date+"', 'MM-DD-YYYY')" +",'"+diagnosis+"', '"+description+"')";
 
 		try
 		{
 			m_con = DriverManager.getConnection(m_url, m_userName,m_password);
 			stmt = m_con.createStatement();
 			ResultSet rset = stmt.executeQuery(queryString);
-
-
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
-			"Transitional//EN\">\n" +
-			"<HTML>\n" +
-			"<HEAD><TITLE>Asn2Sample</TITLE></HEAD>\n" +
-			"<BODY>\n" +
-			"<H1>" +
-			"insert into radiology_record values('" + record_id + "', '" + patient_id + "', '"+ doctor_id + "', '"+ radiologist_id +"', '" +  test_type +"', " + "TO_DATE("+"'"+prescribing_date+"', 'YYYYMMDD')" + ", TO_DATE("+"'"+test_date+"', 'YYYYMMDD')" +",'"+diagnosis+"', '"+description+"')"+
-			"</H1>\n" +
-			"</BODY></HTML>");
-		
+			response_message = " Upgrade Complete! ";
 			stmt.close();
 			m_con.close();
-		}catch(Exception e){
-			System.err.print("I'm adopted. ");
-			System.err.println(e.getMessage());
+		}catch(Exception ex){
+			response_message = ex.getMessage();
+		}
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
+		"Transitional//EN\">\n" +
+		"<HTML>\n" +
+		"<HEAD><TITLE>Asn2Sample</TITLE></HEAD>\n" +
+		"<BODY>\n" +
+		"<H1>" +
+		response_message+
+		//"insert into radiology_record values('" + record_id + "', '" + patient_id + "', '"+ doctor_id + "', '"+ radiologist_id +"', '" +  test_type +"', " + "TO_DATE("+"'"+prescribing_date+"', 'YYYYMMDD')" + ", TO_DATE("+"'"+test_date+"', 'YYYYMMDD')" +",'"+diagnosis+"', '"+description+"')"+
+		"</H1>\n" +
+                "<a href ='index.jsp'> Back Button</a>" + 
+		"</BODY></HTML>");
 	}
-}
 }
