@@ -1,0 +1,55 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+    <head>
+        <title>Help File</title>
+    </head>
+    <body>
+Installation:<br>
+    Copy all .jsp and .html files into the proj1 folder of Catalina.<br>
+    Copy web.xml into proj1/WEB-INF.<br>
+    Copy .jar files into proj1/WEB-INF/lib<br>
+    Copy all .java files and the Makefile into proj1/WEB-INF/classes.<br>
+    Run the makefile.<br>
+    Installation complete.<br>
+<br>
+Login Module:<br>
+    To enter the index and gain access to appropriate files, go to .../login.jsp<br>
+    Enter valid username and password to get access to the appropriate index.<br>
+    "Update Personal Information" allows a user to edit their First Name, Last Name, Address, Email, Phone, and Password.<br> 
+    Simply fill in fields you wish to update and hit the correct Enter button, empty fields will not change current information. <br>
+<br>
+User Management Module:<br>
+    Accessible by class 'a' (Admins) accounts.<br>
+    User Management allows for Adding/Updating of Users, Persons, and Doctors.<br>
+    To add, all fields must be filled before Entering.<br>
+    To update, fields to be updated must be filled in, empty fields will not be updated.<br>
+<br>
+Report Generating Module:<br>
+    Accessible by class 'a' (Admins) accounts.<br>
+    Enter diagnosis and date to get the query.<br>
+    Any empty fields will result in no results.<br>
+<br>
+Uploading Module:<br>
+    Accessible by radiologist accounts.<br>
+    There are two seperate uploading pages, one for the record, and one for images.<br>
+    To upload a record, fill in the correct fields. <br>
+    record_id must be unique and filled in.<br>
+    patient, doctor, and radiologist ids must be valid and filled in.<br>
+    Other fields MAY be null.<br>
+<br>
+    To upload an image, go to the upload image page, input ID, and choose a picture to upload.<br>
+    Record ID must be valid.<br>
+<br>
+Search Module:<br>
+    Input Keywords, and/or dates, AND an ordering style.<br>
+    Search output will exclude all entries the user is not authorized to view. (Users only see entries related to themselves in some way unless you are an admin.)<br>
+    Keywords should be seperated by spaces, and each individual keyword will be checked against First Name, Last Name, Description, and Diagnosis fields.<br>
+<br>
+    Table will be populated with records that match all above requirements. <br>
+    Ranking is done by the following: Rank(record_id) = 6*frequency(patient_name) + 3*frequency(diagnosis) + frequency(description)<br>
+<br>
+
+
+
+    </body>
+</html>        

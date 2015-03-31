@@ -38,10 +38,11 @@ public class authenticate extends HttpServlet {
                 System.err.print("ClassNotFoundException: ");
                 System.err.println(e.getMessage());
             }
-		
+            
             l_login = request.getParameter("login");
 	    l_password = request.getParameter("password");
             queryString = "select password, class, person_id from users u where u.user_name = '" + l_login + "'";
+            // queries for actual information
             try {
                 m_con = DriverManager.getConnection(m_url, m_userName, m_password);
                 stmt = m_con.createStatement();
@@ -51,11 +52,13 @@ public class authenticate extends HttpServlet {
                     user_type = rset.getString(2);
                     p_id = rset.getString(3);
                 }
+                // if the password is correct for the username create a session, and redirect to index
                 if (actual_pass.equals(l_password)) {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("class", user_type);
                     session.setAttribute("pid", p_id);
                     response.sendRedirect("index.jsp");
+                // otherwise stay on login
                 } else {
                     response.sendRedirect("login.jsp");
                 }

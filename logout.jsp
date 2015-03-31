@@ -4,7 +4,7 @@
     </head>
     <body>
         <%
-
+            // clears session attributes and redirects to login page
             session.removeAttribute("class");
             session.removeAttribute("pid");
 

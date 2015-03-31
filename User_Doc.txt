@@ -1,0 +1,45 @@
+Installation:
+    Copy all .jsp and .html files into the proj1 folder of Catalina.
+    Copy web.xml into proj1/WEB-INF.
+    Copy .jar files into proj1/WEB-INF/lib
+    Copy all .java files and the Makefile into proj1/WEB-INF/classes.
+    Run the makefile.
+    Installation complete.
+
+Login Module:
+    To enter the index and gain access to appropriate files, go to .../login.jsp
+    Enter valid username and password to get access to the appropriate index.
+    "Update Personal Information" allows a user to edit their First Name, Last Name, Address, Email, Phone, and Password. 
+    Simply fill in fields you wish to update and hit the correct Enter button, empty fields will not change current information. 
+
+User Management Module:
+    Accessible by class 'a' (Admins) accounts.
+    User Management allows for Adding/Updating of Users, Persons, and Doctors.
+    To add, all fields must be filled before Entering.
+    To update, fields to be updated must be filled in, empty fields will not be updated.
+
+Report Generating Module:
+    Accessible by class 'a' (Admins) accounts.
+    Enter diagnosis and date to get the query.
+    Any empty fields will result in no results.
+
+Uploading Module:
+    Accessible by radiologist accounts.
+    There are two seperate uploading pages, one for the record, and one for images.
+    To upload a record, fill in the correct fields. 
+    record_id must be unique and filled in.
+    patient, doctor, and radiologist ids must be valid and filled in.
+    Other fields MAY be null.
+
+    To upload an image, go to the upload image page, input ID, and choose a picture to upload.
+    Record ID must be valid.
+
+Search Module:
+    Input Keywords, and/or dates, AND an ordering style.
+    Search output will exclude all entries the user is not authorized to view. (Users only see entries related to themselves in some way unless you are an admin.)
+    Keywords should be seperated by spaces, and each individual keyword will be checked against First Name, Last Name, Description, and Diagnosis fields.
+
+    Table will be populated with records that match all above requirements. 
+    Ranking is done by the following: Rank(record_id) = 6*frequency(patient_name) + 3*frequency(diagnosis) + frequency(description)
+
+

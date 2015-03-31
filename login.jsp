@@ -10,7 +10,7 @@
         if (auth == null) {
             auth = "null";
         }
-
+        // if user is still logged in, they get redirected to the index page
         if(auth.equals("a") || auth.equals("r") || auth.equals("d") || auth.equals("p")) {
             String redirectURL = "index.jsp";
             response.sendRedirect(redirectURL);
@@ -29,7 +29,7 @@
 	    .error { font-family: verdana,arial; color: #D41313; font-size: 1.00em; }
     </style>
 
-
+    <!-- Sends information to authenticate servlet-->
     <form name="authenticate" method="POST" action= "authenticate">
         <input type="hidden" name="action" value="login">
         <input type="hidden" name="hide" value="">

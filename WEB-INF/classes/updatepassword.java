@@ -4,7 +4,7 @@ import javax.servlet.http.*;
 import java.util.*;
 import java.sql.*;
 
-public class updatepersonsubmit extends HttpServlet {
+public class updatepassword extends HttpServlet {
 	public String response_message;
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
@@ -18,50 +18,16 @@ public class updatepersonsubmit extends HttpServlet {
 		String insertString1;
 		Statement stmt;
 		//get input		
-		String firstname = request.getParameter("firstname");
-		String lastname = request.getParameter("lastname");
-		String email = request.getParameter("email");
+		String password = request.getParameter("password");;
 		String person_id = request.getParameter("person_id");
-		String address = request.getParameter("address");
-		String phone = request.getParameter("phone");
-		
 
-		queryString= "update persons set ";
-		System.out.println("firstname            :"+firstname);
-		System.out.println("lastname             :"+lastname);
-		System.out.println("email                :"+email);
-		System.out.println("address              :"+address);
-		System.out.println("phone                :"+phone);
 		boolean flag=false;
-		queryString= "update persons set ";
-		if (firstname != ""){
-			queryString= queryString + "first_name='"+firstname+"'";
+		queryString= "update users set ";
+		if (password != ""){
+			queryString= queryString + "password='"+password+"'";
 			flag=true;
 		}
-		if (lastname != "") {
-				if (flag == true){
-					queryString= queryString +",";}
-			queryString= queryString + " last_name='"+lastname+"'";
-			flag=true;
-		}
-		if (email != "") {
-				if (flag == true){
-					queryString= queryString +",";}
-			queryString= queryString + " email='"+email+"'";
-			flag=true;
-		}
-		if (address != "") {
-				if (flag == true){
-					queryString= queryString +",";}
-			queryString= queryString + " address= '"+address+"'";
-			flag=true;
-		}
-		if (phone != "") {
-				if (flag == true){
-					queryString= queryString +",";}
-			queryString= queryString + "phone='"+phone+"'";
-			flag=true;
-		}
+
 		if (flag == true){
 			queryString= queryString+" where person_id='"+person_id+"'";
 			System.out.println(queryString);
@@ -96,6 +62,7 @@ public class updatepersonsubmit extends HttpServlet {
 			    "<BODY>\n" +
 			    Integer.toString(result)+" row(s) updated\n");
 		    out.println("</H1>\n"+"</BODY></HTML>");
+                    m_con.close();
                 } catch(SQLException ex){
                     System.err.println("SQLException: " +
               	    ex.getMessage());

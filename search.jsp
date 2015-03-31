@@ -116,7 +116,7 @@
             to_date = "null";
         }
 
-
+        // the SQLstatement is slowly built from all known attributes
         String SQLStatement = "";
         String SQLOrdering = "";
         String pid = (String) session.getAttribute("pid");
@@ -124,7 +124,7 @@
 
         SQLStatement = "select r.* ";
             
-
+        // check which ordering is selected
         if (ranking.equals("newest")) {
             SQLOrdering = "r.test_date desc";
         }
@@ -135,6 +135,7 @@
             SQLOrdering = "rank desc";
         }
 
+        // makes sure users can only see entries related to them
         if (auth.equals("a")) {}
         else if(auth.equals("r")) {
             security = "r.radiologist_id = '" + pid + "' AND";
@@ -149,7 +150,7 @@
             out.println(pid);
         }
 
-
+        // 3 cases of input, generate the SQL statement as necessary
         // case 1: keywords, no dates
         if (!(keyword.equals("")) && from_date.equals("") && to_date.equals("")) {
             String[] keywordList = keyword.split(" ");
@@ -273,7 +274,7 @@
             <th>Images</th>        
         </tr>
     <%
-
+        // print out the table
         try { 
             stmt = m_con.createStatement();
             rset = stmt.executeQuery(SQLStatement);
