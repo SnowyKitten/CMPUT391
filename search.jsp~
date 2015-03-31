@@ -302,7 +302,7 @@
         } catch (Exception e){
         }    
 
-        m_con.close();
+        
     %>
     </table>
 
