@@ -15,12 +15,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>updatepassword</servlet-name>
-        <servlet-class>updatepassword</servlet-class>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>logout</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>updatepassword</servlet-name>
-        <url-pattern>/updatepassword</url-pattern>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
      <servlet>
@@ -123,6 +123,24 @@
     <servlet-mapping>
         <servlet-name>updatedoctor</servlet-name>
         <url-pattern>/updatedoctor</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>GetOnePic</servlet-name>
+        <servlet-class>GetOnePic</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetOnePic</servlet-name>
+        <url-pattern>/GetOnePic</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+        <servlet-name>GetBigPic</servlet-name>
+        <servlet-class>GetBigPic</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetBigPic</servlet-name>
+        <url-pattern>/GetBigPic</url-pattern>
     </servlet-mapping>
 
 <servlet>

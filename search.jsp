@@ -43,6 +43,8 @@
 	      Connection m_con;
 	      Statement stmt;
               ResultSet rset;
+	      Statement stmt_images;
+              ResultSet rset2;
 	      
 	      try
 	      {
@@ -59,6 +61,7 @@
 		out.println(e.getMessage());
 		return;
 	      }
+
 
 	%>	     
     <form name=insertData method=post action=search.jsp> 
@@ -116,7 +119,7 @@
             to_date = "null";
         }
 
-        // the SQLstatement is slowly built from all known attributes
+
         String SQLStatement = "";
         String SQLOrdering = "";
         String pid = (String) session.getAttribute("pid");
@@ -124,7 +127,7 @@
 
         SQLStatement = "select r.* ";
             
-        // check which ordering is selected
+
         if (ranking.equals("newest")) {
             SQLOrdering = "r.test_date desc";
         }
@@ -135,7 +138,6 @@
             SQLOrdering = "rank desc";
         }
 
-        // makes sure users can only see entries related to them
         if (auth.equals("a")) {}
         else if(auth.equals("r")) {
             security = "r.radiologist_id = '" + pid + "' AND";
@@ -150,7 +152,7 @@
             out.println(pid);
         }
 
-        // 3 cases of input, generate the SQL statement as necessary
+
         // case 1: keywords, no dates
         if (!(keyword.equals("")) && from_date.equals("") && to_date.equals("")) {
             String[] keywordList = keyword.split(" ");
@@ -274,7 +276,7 @@
             <th>Images</th>        
         </tr>
     <%
-        // print out the table
+
         try { 
             stmt = m_con.createStatement();
             rset = stmt.executeQuery(SQLStatement);
@@ -299,9 +301,36 @@
                 out.println("<td>" + testDate + "</td>");
                 out.println("<td>" + diagnosis + "</td>");
                 out.println("<td>" + description + "</td>");
-            }
-        } catch (Exception e){
-        }    
+		try{
+			String sql_images="select image_id from pacs_images where record_id=" + recordID;
+			stmt_images = m_con.createStatement();
+			rset2 = stmt_images.executeQuery(sql_images);
+			String image_id = "";
+			out.println("<td>");
+			while(rset2 != null && rset2.next()){
+
+				image_id=(rset2.getObject(1)).toString();
+				//out.println(image_id);
+				// display the thumbnail
+				String path="GetOnePic?"+image_id;
+				String path1="GetBigPic?big"+image_id;
+				//out.println("<img src="+ path + "></img>");
+
+				out.println("<a href=" + path1+ ">");
+				out.println("<img src="+ path + "></a>");
+
+						
+			}
+			out.println("</td>");
+			stmt_images.close();
+			rset2.close();
+			}catch(Exception ex){
+				out.println("dead");
+			}
+
+         	}
+       	    } catch (Exception e){
+            }    
 
         m_con.close();
     %>
