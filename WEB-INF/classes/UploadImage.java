@@ -1,10 +1,7 @@
 /***
- *  A sample program to demonstrate how to use servlet to 
- *  load an image file from the client disk via a web browser
- *  and insert the image into a table in Oracle DB.
  *  
  *  Copyright 2007 COMPUT 391 Team, CS, UofA                             
- *  Author:  Fan Deng
+ *  @Adapted form Fan Deng's UploadImage.java
  *                                                                  
  *  Licensed under the Apache License, Version 2.0 (the "License");         
  *  you may not use this file except in compliance with the License.        
@@ -20,13 +17,14 @@
  *  http://www.java-tips.org/java-se-tips/java.awt.image/shrinking-an-image-by-skipping-pixels.html
  *
  *
- *  the table shall be created using the following
-      CREATE TABLE pictures (
-            pic_id int,
-	        pic_desc  varchar(100),
-		    pic  BLOB,
-		        primary key(pic_id)
-      );
+ * CREATE TABLE pacs_images 
+	(record_id   int,
+	image_id    int,
+	thumbnail   blob,
+	regular_size blob,
+	full_size    blob,
+	PRIMARY KEY(record_id,image_id),
+	FOREIGN KEY(record_id) REFERENCES radiology_record);
       *
       *  One may also need to create a sequence using the following 
       *  SQL statement to automatically generate a unique pic_id:
@@ -121,21 +119,14 @@ public class UploadImage extends HttpServlet {
 	    BLOB fullBlob = ((OracleResultSet)rset).getBLOB(5);
 	    //Write the image to the blob object
 	    OutputStream outstream = myblob.getBinaryOutputStream();
-	    ImageIO.write(img, "jpg", outstream);
+	    ImageIO.write(thumbNail, "jpg", outstream);
 
 	    OutputStream regular = regularBlob.getBinaryOutputStream();
-	    ImageIO.write(thumbNail, "jpg", regular);
+	    ImageIO.write(img, "jpg", regular);
 
 	    OutputStream full = fullBlob.getBinaryOutputStream();
 	    ImageIO.write(fullimg, "jpg", full);
-	    
-	    /*
-	    int size = myblob.getBufferSize();
-	    byte[] buffer = new byte[size];
-	    int length = -1;
-	    while ((length = instream.read(buffer)) != -1)
-		outstream.write(buffer, 0, length);
-	    */
+
 	    instream.close();
  	    regular.close();
 	    outstream.close();
@@ -192,5 +183,6 @@ public class UploadImage extends HttpServlet {
 
         return shrunkImage;
     }
+
 
 }

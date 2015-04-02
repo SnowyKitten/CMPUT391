@@ -3,6 +3,8 @@ Installation:
     Copy web.xml into proj1/WEB-INF.
     Copy .jar files into proj1/WEB-INF/lib
     Copy all .java files and the Makefile into proj1/WEB-INF/classes.
+    Before the user compiles with make, enter the following classpath on the terminal first.
+    CLASSPATH=$CLASSPATH:/cshome/xinyi3/catalina/webapps/proj1/WEB-INF/lib/commons-fileupload-1.0.jar
     Run the makefile.
     Installation complete.
 

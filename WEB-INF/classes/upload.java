@@ -4,6 +4,14 @@ import javax.servlet.http.*;
 import java.util.*;
 import java.sql.*;
 
+/**
+ *  This servlet inserts a record into the rediology table:
+ *
+ *   radiology_record(record_id,patient_id,doctor_id,radiologist_id,test_type,prescribing_date,test_date,diagnosis, 		description)
+ *
+ *
+ */
+
 public class upload extends HttpServlet {
 	public String response_message;
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -60,7 +68,6 @@ public class upload extends HttpServlet {
 		"<BODY>\n" +
 		"<H1>" +
 		response_message+
-		//"insert into radiology_record values('" + record_id + "', '" + patient_id + "', '"+ doctor_id + "', '"+ radiologist_id +"', '" +  test_type +"', " + "TO_DATE("+"'"+prescribing_date+"', 'YYYYMMDD')" + ", TO_DATE("+"'"+test_date+"', 'YYYYMMDD')" +",'"+diagnosis+"', '"+description+"')"+
 		"</H1>\n" +
                 "<a href ='index.jsp'> Back Button</a>" + 
 		"</BODY></HTML>");

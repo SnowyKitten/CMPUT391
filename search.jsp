@@ -313,7 +313,7 @@
 				//out.println(image_id);
 				// display the thumbnail
 				String path="GetOnePic?"+image_id;
-				String path1="GetBigPic?big"+image_id;
+				String path1="largerImage.jsp?"+image_id;
 				//out.println("<img src="+ path + "></img>");
 
 				out.println("<a href=" + path1+ ">");

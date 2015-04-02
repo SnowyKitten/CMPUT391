@@ -7,23 +7,22 @@ import java.sql.*;
  *  This servlet sends one picture stored in the table below to the client 
  *  who requested the servlet.
  *
- *   picture( photo_id: integer, title: varchar, place: varchar, 
- *            sm_image: blob,   image: blob )
+ *   pacs_images(record_id,image_id,thumbnail,regular_size,full_size)
  *
  *  The request must come with a query string as follows:
- *    GetOnePic?12:        sends the picture in sm_image with photo_id = 12
- *    GetOnePicture?big12: sends the picture in image  with photo_id = 12
+ *    GetBigPic?regular12:      sends the picture in regular_size with photo_id = 12
+ *    GetBigPic?big12:        	sends the picture in full_size with photo_id = 12
  *
- *  @author  Li-Yan Yuan
+ *  @adapted from Li-Yan Yuan's example
  *
  */
 public class GetBigPic extends HttpServlet 
     implements SingleThreadModel {
 
     /**
-     *    This method first gets the query string indicating PHOTO_ID,
+     *    This method first gets the query string indicating image_id,
      *    and then executes the query 
-     *          select image from yuan.photos where photo_id = PHOTO_ID   
+     *          select image from yuan.photos where picid =image_id   
      *    Finally, it sends the picture to the client
      */
 
@@ -33,9 +32,12 @@ public class GetBigPic extends HttpServlet
 	
 	//  construct the query  from the client's QueryString
 	String picid  = request.getQueryString();
-	String query;
-
-	query = "select thumbnail from pacs_images where image_id=" + picid.substring(3);;
+	String query=null;
+	if (picid.startsWith("regular")) {
+		query = "select regular_size from pacs_images where image_id=" + picid.substring(7);
+	}else if(picid.startsWith("big")){
+		query = "select full_size from pacs_images where image_id=" + picid.substring(3);
+	}
 
 	ServletOutputStream out = response.getOutputStream();
 	//PrintWriter out = response.getWriter();
@@ -72,6 +74,7 @@ public class GetBigPic extends HttpServlet
 		out.println( ex.getMessage() );
 	    }
 	}
+
     }
 
     /*
