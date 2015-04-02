@@ -25,6 +25,7 @@ public class updateusersubmit extends HttpServlet {
 		String personid = request.getParameter("personid");
 		String registrationdate = request.getParameter("registrationdate");
 
+		//connect to sql
 		try
 		{
 			Class drvClass=Class.forName(m_driverName);
@@ -34,11 +35,7 @@ public class updateusersubmit extends HttpServlet {
 			System.err.print("ClassNotFoundException: ");
 			System.err.println(e.getMessage());
 		}
-		
-		System.out.println("username            :"+username);
-		System.out.println("userpass            :"+userpassword);
-		System.out.println("userclass           :"+userclass);
-		System.out.println("registrationdate    :"+registrationdate);
+		//create query out of inputed information
 		boolean flag=false;
 		queryString= "update users set ";
 		if (username != ""){
@@ -66,6 +63,7 @@ public class updateusersubmit extends HttpServlet {
 		if (flag == true){
 			queryString= queryString+" where person_id='"+personid+"'";
 			System.out.println(queryString);
+		//execute statement
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
 		stmt = m_con.createStatement();
@@ -102,7 +100,9 @@ public class updateusersubmit extends HttpServlet {
 			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
-	}else {
+	}
+	//if not all values are inputed	
+	else {
 
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();

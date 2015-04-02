@@ -22,6 +22,8 @@ public class updatedoctorsubmit extends HttpServlet {
 		String patientidc = request.getParameter("patientidc");
 		String doctoridn = request.getParameter("doctoridn");
 		String patientidn = request.getParameter("patientidn");
+		
+		//connect to sql
 		try
 		{
 			Class drvClass=Class.forName(m_driverName);
@@ -32,9 +34,10 @@ public class updatedoctorsubmit extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 
-
+		//make sql statement
 		queryString= "update family_doctor set patient_id='"+patientidn+"', doctor_id ='"+doctoridn+"' where doctor_id='"+doctoridc+"' AND patient_id = '"+patientidc+"'";
 
+		//execute statement
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
 		stmt = m_con.createStatement();
@@ -51,7 +54,7 @@ public class updatedoctorsubmit extends HttpServlet {
 			Integer.toString(result)+" row(s) updated\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 
-
+		//print error it it occurs
 		}catch(Exception ex){
 
 

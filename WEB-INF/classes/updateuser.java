@@ -19,10 +19,12 @@ public class updateuser extends HttpServlet {
 		Statement stmt;
 		ResultSet rs;
 		String answer="";
-
+		
+		//create sql statement to get the necessary information to show in table
 		String createString = "SELECT user_name, class, person_id, date_registered from users"; 
 
 				System.out.println(createString);
+		//connect to sql		
 		try
        		{
 
@@ -37,6 +39,7 @@ public class updateuser extends HttpServlet {
               		System.err.println(e.getMessage());
        		}
 		
+		//execute statement and update table rows
 		try
        		{
 
@@ -66,7 +69,7 @@ public class updateuser extends HttpServlet {
 
        		}
 
-
+		//print table rows and get input in html
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 

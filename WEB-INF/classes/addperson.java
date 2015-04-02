@@ -24,7 +24,8 @@ public class addperson extends HttpServlet {
 		String address = request.getParameter("address");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-
+	
+		//try to connect
 		try
 		{
 			Class drvClass=Class.forName(m_driverName);
@@ -35,9 +36,10 @@ public class addperson extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 
-
+		//create sql statement
 		queryString= "insert into persons values('" + personid + "', '" + firstname + "', '"+ lastname + "', '"+ address +"', '" + email + "', '" + phone + "')";
 
+		//try to execute
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
 		stmt = m_con.createStatement();
@@ -54,7 +56,7 @@ public class addperson extends HttpServlet {
 			"SUCCESS\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 
-
+		//if problem print the error message
 		}catch(Exception ex){
 
 

@@ -21,6 +21,7 @@ public class adddoctor extends HttpServlet {
 		String doctorid = request.getParameter("doctorid");
 		String patientid = request.getParameter("patientid");
 
+		//try to connect to sql
 		try
 		{
 			Class drvClass=Class.forName(m_driverName);
@@ -31,9 +32,10 @@ public class adddoctor extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 
-
+		//create string
 		queryString= "insert into family_doctor values('" + doctorid + "', '" + patientid + "')";
-
+		
+		//try to execute string
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
 		stmt = m_con.createStatement();
@@ -50,7 +52,7 @@ public class adddoctor extends HttpServlet {
 			"SUCCESS\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 
-
+		//if error print it
 		}catch(Exception ex){
 
 

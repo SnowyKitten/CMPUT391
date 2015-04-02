@@ -25,7 +25,7 @@ public class updatepersonsubmit extends HttpServlet {
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 		
-
+		//create query out of inputed information
 		queryString= "update persons set ";
 		System.out.println("firstname            :"+firstname);
 		System.out.println("lastname             :"+lastname);
@@ -67,7 +67,7 @@ public class updatepersonsubmit extends HttpServlet {
 			System.out.println(queryString);
 
 
-
+		//connect to sql
 		try
 		{
 			Class drvClass=Class.forName(m_driverName);
@@ -80,7 +80,7 @@ public class updatepersonsubmit extends HttpServlet {
 
 
 		
-
+		//try to execute statement
 		try{
 		    m_con = DriverManager.getConnection(m_url, m_userName,m_password);
 		    stmt = m_con.createStatement();
@@ -96,7 +96,9 @@ public class updatepersonsubmit extends HttpServlet {
 			    "<BODY>\n" +
 			    Integer.toString(result)+" row(s) updated\n");
 		    out.println("</H1>\n"+"</BODY></HTML>");
-                } catch(SQLException ex){
+                } 
+		//if error print	
+		catch(SQLException ex){
                     System.err.println("SQLException: " +
               	    ex.getMessage());
 		    System.out.println("\n\n"+queryString);
@@ -112,5 +114,18 @@ public class updatepersonsubmit extends HttpServlet {
 		    out.println("</H1>\n"+"</BODY></HTML>");
 	       } 
 }
+	//if not all values are inputed	
+	else {
+
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
+			"Transitional//EN\">\n" +
+			"<HTML>\n" +
+			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
+			"<BODY>\n" +
+			"ERROR <br> <br>PLEASE PUT IN VALUES TO UPDATE\n");
+		out.println("</H1>\n"+"</BODY></HTML>");
+		}
 }
 }

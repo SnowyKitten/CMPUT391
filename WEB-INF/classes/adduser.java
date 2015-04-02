@@ -24,6 +24,7 @@ public class adduser extends HttpServlet {
 		String personid = request.getParameter("personid");
 		String registrationdate = request.getParameter("registrationdate");
 
+		//try to connect
 		try
 		{
 			Class drvClass=Class.forName(m_driverName);
@@ -34,9 +35,10 @@ public class adduser extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 
-
+		//create sql statament
 		queryString= "insert into users values('" + username + "', '" + userpassword + "', '"+ userclass + "', '"+ personid +"', " + "TO_DATE("+"'"+registrationdate+"', 'MM-DD-YYYY'))";
 
+		//try to execute statement
 		try{
 		m_con = DriverManager.getConnection(m_url, m_userName,m_password);
 		stmt = m_con.createStatement();
@@ -53,7 +55,7 @@ public class adduser extends HttpServlet {
 			"SUCCESS\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 
-
+		//if error print it
 		}catch(Exception ex){
 
 

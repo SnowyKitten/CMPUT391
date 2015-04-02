@@ -19,7 +19,8 @@ public class updatedoctor extends HttpServlet {
 		Statement stmt;
 		ResultSet rs;
 		String answer="";
-
+		
+		//make sql statemtn to get information
 		String createString = "SELECT doctor_id, patient_id from family_doctor"; 
 
 				System.out.println(createString);
@@ -37,6 +38,7 @@ public class updatedoctor extends HttpServlet {
               		System.err.println(e.getMessage());
        		}
 		
+		//execute statement
 		try
        		{
 
@@ -58,6 +60,7 @@ public class updatedoctor extends HttpServlet {
               		stmt.close();
              		m_con.close();
 
+		//print error
        		} catch(SQLException ex) {
 
               		System.err.println("SQLException: " +
@@ -65,7 +68,7 @@ public class updatedoctor extends HttpServlet {
 
        		}
 
-
+		//write information to table and get input in html
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
