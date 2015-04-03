@@ -335,6 +335,6 @@
         m_con.close();
     %>
     </table>
-	<a href ='index.jsp'> Back Button</a>
+	out.println("<a href ='index.jsp'> Back Button</a>");
     </body>
 </html>        

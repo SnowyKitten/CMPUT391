@@ -106,14 +106,6 @@
         <servlet-name>updateperson</servlet-name>
         <url-pattern>/updateperson</url-pattern>
     </servlet-mapping>
-<servlet>
-        <servlet-name>updatepassword</servlet-name>
-        <servlet-class>updatepassword</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>updatepassword</servlet-name>
-        <url-pattern>/updatepassword</url-pattern>
-    </servlet-mapping>
 
 <servlet>
         <servlet-name>updatepersonsubmit</servlet-name>
