@@ -32,6 +32,8 @@ public class adddoctor extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 
+		if ((patientid != "") && (doctorid != "")){
+
 		//create string
 		queryString= "insert into family_doctor values('" + doctorid + "', '" + patientid + "')";
 		
@@ -72,6 +74,19 @@ public class adddoctor extends HttpServlet {
 			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
+	}
+	else{
+			
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
+			"Transitional//EN\">\n" +
+			"<HTML>\n" +
+			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
+			"<BODY>\n" +
+			"ERROR <br> <br>" + "PLEASE ENTER ALL INPUTS" + "\n");
+		out.println("</H1>\n"+"</BODY></HTML>");
+}
 }
 }
 

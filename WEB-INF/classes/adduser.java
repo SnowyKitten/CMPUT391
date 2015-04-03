@@ -35,6 +35,8 @@ public class adduser extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 
+		if ((username != "") && (personid != "") && (userpassword != "") && (userclass != "") && (registrationdate != "")){
+
 		//create sql statament
 		queryString= "insert into users values('" + username + "', '" + userpassword + "', '"+ userclass + "', '"+ personid +"', " + "TO_DATE("+"'"+registrationdate+"', 'MM-DD-YYYY'))";
 
@@ -75,6 +77,18 @@ public class adduser extends HttpServlet {
 			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
+	}
+	else{
+	response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
+			"Transitional//EN\">\n" +
+			"<HTML>\n" +
+			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
+			"<BODY>\n" +
+			"ERROR <br> <br>" + "PLEASE ENTER ALL INPUTS" + "\n");
+		out.println("</H1>\n"+"</BODY></HTML>");
+}
 }
 }
 

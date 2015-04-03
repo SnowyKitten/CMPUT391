@@ -62,6 +62,9 @@ public class updatepersonsubmit extends HttpServlet {
 			queryString= queryString + "phone='"+phone+"'";
 			flag=true;
 		}
+		if (person_id == ""){
+			flag=false;
+		}
 		if (flag == true){
 			queryString= queryString+" where person_id='"+person_id+"'";
 			System.out.println(queryString);

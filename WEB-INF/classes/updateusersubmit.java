@@ -60,6 +60,9 @@ public class updateusersubmit extends HttpServlet {
 			queryString= queryString + "date_registered=TO_DATE('"+registrationdate+"', 'MM-DD-YYYY')";
 			flag=true;
 		}
+		if (personid == ""){
+			flag=false;
+		}
 		if (flag == true){
 			queryString= queryString+" where person_id='"+personid+"'";
 			System.out.println(queryString);

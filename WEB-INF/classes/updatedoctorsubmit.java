@@ -34,6 +34,8 @@ public class updatedoctorsubmit extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 
+		if ((patientidc != "") && (doctoridc != "") && (patientidn != "") && (doctoridn != "")){
+
 		//make sql statement
 		queryString= "update family_doctor set patient_id='"+patientidn+"', doctor_id ='"+doctoridn+"' where doctor_id='"+doctoridc+"' AND patient_id = '"+patientidc+"'";
 
@@ -74,5 +76,17 @@ public class updatedoctorsubmit extends HttpServlet {
 			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
+	}
+	else{
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
+			"Transitional//EN\">\n" +
+			"<HTML>\n" +
+			"<HEAD><TITLE>RecordPage2</TITLE></HEAD>\n" +
+			"<BODY>\n" +
+			"ERROR <br> <br>" + "PLEASE ENTER ALL INPUTS" + "\n");
+		out.println("</H1>\n"+"</BODY></HTML>");
+}
 }
 }

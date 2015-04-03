@@ -35,6 +35,7 @@ public class addperson extends HttpServlet {
 			System.err.print("ClassNotFoundException: ");
 			System.err.println(e.getMessage());
 		}
+		if ((personid != "") && (firstname != "") && (lastname != "") && (address != "") && (email != "") && (phone != "")){
 
 		//create sql statement
 		queryString= "insert into persons values('" + personid + "', '" + firstname + "', '"+ lastname + "', '"+ address +"', '" + email + "', '" + phone + "')";
@@ -76,5 +77,18 @@ public class addperson extends HttpServlet {
 			"ERROR <br> <br>" + ex.getMessage() + "\n");
 		out.println("</H1>\n"+"</BODY></HTML>");
 	}
+	}
+	else {
+		response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 " +
+			"Transitional//EN\">\n" +
+			"<HTML>\n" +
+			"<HEAD><TITLE>addperson</TITLE></HEAD>\n" +
+			"<BODY>\n" +
+			"ERROR <br> <br>" + "PLEASE ENTER ALL INPUTS"+ "\n");
+		out.println("</H1>\n"+"</BODY></HTML>");
+	}
+
 }
 }
